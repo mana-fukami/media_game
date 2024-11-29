@@ -1,0 +1,7 @@
+INDEX VERSION 1.134+C:\Users\mana\Desktop\大学\メディア演習\.metadata\.plugins\org.eclipse.jdt.core
+495363174.index
+2557318462.index
+1404926610.index
+23381124.index
+1865797976.index
+4016743848.index

@@ -1,0 +1,11 @@
+#!/bin/csh
+
+foreach prog (SwingFrame NewFrame ButtonFrame LabelFrame LionFrame GridFrame HelloFrame HelloLabelFrame Radix)
+echo compiling $prog
+javac $prog.java
+echo running $prog
+java $prog
+echo "-------------------------"
+#echo 次のプログラムを実行するには enter を押して下さい．
+# bash -c read
+end

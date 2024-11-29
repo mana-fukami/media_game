@@ -1,0 +1,93 @@
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+class RadixObservable extends Observable{
+	private String value="";//出力する数字
+	private int rad=10;//自分が何進数を出力するか
+//-----setter-----
+	public void setValue(String s,int num) {//num:入力されたフィールドの進数
+		int fig=Integer.parseInt(s,num);//入力されたフィールドの進数で文字列→数字
+		value=Integer.toString(fig,rad);//自分の進数で数字→文字列
+		setChanged();
+		notifyObservers();
+	}
+	public void setRad(int num) {rad=num;}
+//-----getter-----
+	public String getValue() {
+		return value;
+	}
+	public int getRad() {
+		return rad;
+	}
+}
+
+class TextObserver extends JTextField implements Observer,ActionListener{
+	private RadixObservable radixObservable;
+	public int rad;//自分が何進数か
+	public TextObserver(RadixObservable so,int num) {
+		this.rad=num;
+	    radixObservable = so;
+	    radixObservable.addObserver(this);
+	    this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,26)); // 文字を大きくします．
+	    addActionListener(this);
+	  }
+	public void update(Observable o,Object arg) {}
+	public void actionPerformed(ActionEvent e) {}
+}
+
+class RadixFrame extends JFrame implements ActionListener {
+    private JFrame f;
+    private JTextField hex,dec,oct,bin;
+    private JLabel hexLabel,decLabel;
+      
+    public RadixFrame() {
+      hex = new JTextField(3);//16進数
+      dec = new JTextField(3);//10進数
+      oct=new JTextField(3);//8進数
+      bin=new JTextField(3);//2進数
+      this.setLayout(new GridLayout(4,2));
+      this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,26));
+      this.add(new JLabel("16進数"));
+      this.add(hex);
+      this.add(new JLabel("10進数"));
+      this.add(dec);
+      this.add(new JLabel("8進数"));
+      this.add(oct);
+      this.add(new JLabel("2進数"));
+      this.add(bin);
+      this.pack();
+      
+      hex.addActionListener(this);
+      dec.addActionListener(this);
+      oct.addActionListener(this);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e){
+    	String fig=null;//入力された数字
+    	int n=0;
+    	
+      if (e.getSource()==hex){ // JTextFied hex に対する処理
+    	fig=hex.getText();
+    	n=Integer.parseInt(fig,16);
+    	fig=Integer.toString(n,10);
+    	dec.setText(fig);
+      }
+      else if (e.getSource()==dec) { // JTextFied dec に対する処理
+    	fig=dec.getText();
+      	n=Integer.parseInt(fig,10);
+      	fig=Integer.toString(n,16);
+      	hex.setText(fig);
+      }
+    }
+    public static void main(String argv[]) {
+      new RadixFrame();
+    }
+}

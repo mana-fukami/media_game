@@ -1,0 +1,80 @@
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+class RadixObservable extends Observable{
+	private String fig="";
+	private int rad=10;//何進数の数字が入力されたか
+//-----setter-----
+	public void setValue(String s,int num) {
+		fig=s;
+		rad=num;
+		setChanged();
+		notifyObservers();
+	}
+	public void setRad(int num) {rad=num;}
+//-----getter-----
+	public String getFig() {
+		return fig;
+	}
+	public int getRad() {
+		return rad;
+	}
+}
+
+class TextObserver extends JTextField implements Observer,ActionListener{
+	private RadixObservable radixObservable;
+	public int rad;//自分が何進数か
+	public TextObserver(RadixObservable so,int num) {
+		this.rad=num;
+		radixObservable = so;
+		radixObservable.addObserver(this);
+		this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,26)); // 文字を大きくします．
+		addActionListener(this);
+	}
+	public void update(Observable o,Object arg) {
+		String s=radixObservable.getFig();//入力された数字
+		int num=radixObservable.getRad();//入力された数字の進数
+		num=Integer.parseInt(s,num);//入力進数の数字へ
+		s=Integer.toString(num,rad);//自分の進数の文字列へ
+		setText(s);
+	}
+	public void actionPerformed(ActionEvent e) {
+		String s=getText();
+		radixObservable(s,rad);
+	}
+}
+
+class RadixFrame extends JFrame{
+    private JFrame f;
+    private JTextField hex,dec,oct,bin;
+    private JLabel hexLabel,decLabel;
+      
+    public RadixFrame() {
+      hex = new JTextField(3);//16進数
+      dec = new JTextField(3);//10進数
+      oct=new JTextField(3);//8進数
+      bin=new JTextField(3);//2進数
+      this.setLayout(new GridLayout(4,2));
+      this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,26));
+      this.add(new JLabel("16進数"));
+      this.add(hex);
+      this.add(new JLabel("10進数"));
+      this.add(dec);
+      this.add(new JLabel("8進数"));
+      this.add(oct);
+      this.add(new JLabel("2進数"));
+      this.add(bin);
+      this.pack();
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
+    }
+    public static void main(String argv[]) {
+      new RadixFrame();
+    }
+}

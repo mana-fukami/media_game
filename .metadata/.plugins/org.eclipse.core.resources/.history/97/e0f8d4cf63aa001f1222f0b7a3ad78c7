@@ -1,0 +1,59 @@
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+
+import javax.swing.JFrame;
+
+class StringObservable extends Observable {
+  private String value = "";
+  private int num=0;//何個目のフィールドに入力されたか
+  public String getValue() {
+    return value;
+  }
+  public int getNum() {
+	  return num;
+  }
+  public void setValue() {
+	  Calendar cal = Calendar.getInstance(); 
+	  int hour= cal.get(Calendar.HOUR_OF_DAY); 
+	  int min = cal.get(Calendar.MINUTE); 
+	  int sec = cal.get(Calendar.SECOND);
+	  String current_time = String.format("%02d:%02d:%02d",hour,min,sec);
+	  value=s;
+	  this.num=num;
+    setChanged();
+    notifyObservers();
+  }
+}
+
+class TimeObservable extends Observable implements ActionListener {
+  private StringObservable stringObservable;
+  private javax.swing.Timer timer;
+  private int hour,min,sec;
+  public TimeObservable() {
+	  timer=new javax.swing.Timer(1000,this);
+	  timer.start();
+  }
+  public void actionPerformed(ActionEvent e) {
+   this.setValue();
+  }
+}
+
+class ObserverFrame extends JFrame {
+    public ObserverFrame(){
+      this.setTitle("Observer Frame");
+      int num=10;//入力フィールドの数
+      this.setLayout(new GridLayout(num,1));
+      StringObservable s= new StringObservable();
+     
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.pack();
+      this.setVisible(true);
+    }
+    public static void main(String argv[]) {
+      new ObserverFrame();
+   }
+}
+

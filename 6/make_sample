@@ -1,0 +1,22 @@
+#!/bin/csh
+foreach prog (TestArrayList TestBoxing)
+echo compiling $prog
+javac $prog.java
+echo running $prog
+java $prog
+echo "-------------------------"
+echo 次のプログラムを実行するには enter を押して下さい．
+bash -c read
+end
+
+foreach prog (RandomFrame MovingFrame)
+echo compiling $prog
+javac $prog.java
+echo running $prog
+java $prog
+echo "-------------------------"
+end
+
+java FallFrame
+
+

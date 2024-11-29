@@ -1,0 +1,55 @@
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+class RadixObservable extends Observable{
+	
+}
+
+class RadixFrame extends JFrame implements ActionListener {
+    private JFrame f;
+    private JTextField hex,dec;
+    private JLabel hexLabel,decLabel;
+      
+    public RadixFrame() {
+      hex = new JTextField(3);
+      dec = new JTextField(3);
+      this.setLayout(new GridLayout(2,2));
+      
+      this.add(new JLabel("16進数"));
+      this.add(hex);
+      this.add(new JLabel("10進数"));
+      this.add(dec);
+      this.pack();
+      
+      hex.addActionListener(this);
+      dec.addActionListener(this);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e){
+    	String fig=null;//入力された数字
+    	int n=0;
+    	
+      if (e.getSource()==hex){ // JTextFied hex に対する処理
+    	fig=hex.getText();
+    	n=Integer.parseInt(fig,16);
+    	fig=Integer.toString(n,10);
+    	dec.setText(fig);
+      }
+      else if (e.getSource()==dec) { // JTextFied dec に対する処理
+    	fig=dec.getText();
+      	n=Integer.parseInt(fig,10);
+      	fig=Integer.toString(n,16);
+      	hex.setText(fig);
+      }
+    }
+    public static void main(String argv[]) {
+      new RadixFrame();
+    }
+}

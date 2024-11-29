@@ -1,0 +1,76 @@
+
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Calendar;
+
+import javax.swing.JFrame;
+
+class StringObservable extends Observable {
+  private String value = "";
+  private int num=0;//何個目のフィールドに入力されたか
+  public String getValue() {
+    return value;
+  }
+  public int getNum() {
+	  return num;
+  }
+  public void setValue(String s,int num) {
+	  Calendar cal = Calendar.getInstance(); 
+	  int hour= cal.get(Calendar.HOUR_OF_DAY); 
+	  int min = cal.get(Calendar.MINUTE); 
+	  int sec = cal.get(Calendar.SECOND);
+	  String current_time = String.format("%02d:%02d:%02d",hour,min,sec);
+	  value=s;
+	  this.num=num;
+    setChanged();
+    notifyObservers();
+  }
+}
+
+class TimeObserver extends Observable implements ActionListener {
+  private StringObservable stringObservable;
+  
+  public TimeObserver(StringObservable so,int num) {
+	  this.num=num;
+    stringObservable = so;
+    stringObservable.addObserver(this);
+    this.setFont(new Font(Font.SANS_SERIF,Font.BOLD,26)); // 文字を大きくします．
+    addActionListener(this);
+  }
+  public void update(Observable o,Object arg) {
+    String s = stringObservable.getValue();
+    int j=stringObservable.getNum();
+    j=this.num-j;
+    j=Integer.parseInt(s)+j;
+    s=Integer.toString(j);
+    setText(s);
+  }
+  public void actionPerformed(ActionEvent e) {
+   String s = getText();
+   stringObservable.setValue(s,num);
+  }
+}
+
+class ObserverFrame extends JFrame {
+    public ObserverFrame(){
+      this.setTitle("Observer Frame");
+      int num=10;//入力フィールドの数
+      this.setLayout(new GridLayout(num,1));
+      StringObservable s= new StringObservable();
+      TextFieldObserver text[]=new TextFieldObserver[num];
+      for (int i = 0; i < num; i++) {
+    	  text[i]=new TextFieldObserver(s,i);
+    	  this.add(text[i]);
+    	  s.setValue("0",0);
+      }
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.pack();
+      this.setVisible(true);
+    }
+    public static void main(String argv[]) {
+      new ObserverFrame();
+   }
+}
+

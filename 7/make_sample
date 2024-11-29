@@ -1,0 +1,40 @@
+#!/bin/csh
+
+javac -encoding UTF-8 Observer.java Observable.java
+
+foreach prog (ObserverFrame)
+echo compiling $prog
+javac -encoding UTF-8 $prog.java
+echo running $prog
+java $prog
+echo "-------------------------"
+end
+
+foreach prog (NumberFrame ClockFrame)
+echo running $prog
+java $prog
+echo "-------------------------"
+end
+
+foreach prog (DrawFrame)
+echo compiling $prog
+javac -encoding UTF-8 $prog.java
+echo running $prog
+java $prog
+echo "-------------------------"
+end
+
+foreach prog (DrawFrame2)
+echo running $prog
+java $prog
+echo "-------------------------"
+end
+
+foreach prog (Editor MoveByKeyFrame)
+echo compiling $prog
+javac -encoding UTF-8 $prog.java
+echo running $prog
+java $prog
+echo "-------------------------"
+end
+
