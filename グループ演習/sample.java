@@ -1,3 +1,4 @@
 public class sample {
-    public void main(){}
+    public void main(){/////
+    }
 }
