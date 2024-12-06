@@ -1,5 +1,4 @@
 package TypingGame;
-
-public class Controller {
-    // test
+//-----待機画面と結果表示のコントローラ-----
+public class Controller1 {
 }
