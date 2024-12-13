@@ -3,16 +3,13 @@ package TypingGame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Timer;
-
 class Model extends Observable implements ActionListener {
 	/* 別ファイルのクラスをインスタンス化しておく */
 	private Main main=new Main();
 	private Sentences sentences; 
 	
 	/* 制限時間に関する変数 */
-	private Timer timer;
-	private int limit;//経過した時間
+	private int Time;//経過した時間
 	
 	/* 文字列の管理に関する変数 */
 	private String sentence;//正解の文章
@@ -34,8 +31,6 @@ class Model extends Observable implements ActionListener {
 	public void Game() {
 		//System.out.println("Game()");//debug
 		main.setFlag(1);//ゲーム画面の表示に切り替える
-		limit=0;
-		Time();//タイマーのスタート
 		sentences=new Sentences();//呼び出す問題集をつくる
 		miss=0;
 		correct=0;
@@ -66,19 +61,21 @@ class Model extends Observable implements ActionListener {
 		System.out.println(charnum);
 	}
 	/*タイマーの管理*/
-	public int getTime() {
-		return limit;
+	public void setTime(int num) {
+		Time+=num;
 	}
-	public void Time() {
+	public int getTime() {
+		return Time;
+	}
+	/*public void Time() {
 		timer=new Timer(1000,this);
 		limit+=1000;
 		setChanged();
 		notifyObservers();
-	}
+	}*/
 	public void actionPerformed(ActionEvent e) {
 		//limit+=1000;//1秒ずつ経過する
-		if(limit>60000) {//60秒で終了
-			timer.stop();
+		if(Time>60000) {//60秒で終了
 			Result();//結果画面の表示に切り替える
 		}
 		setChanged();
