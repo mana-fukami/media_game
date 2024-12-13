@@ -4,7 +4,7 @@ public class Sentences {
 	private int num;//呼び出す問題番号
 	private int difficulty;//難易度
 	private int max=4;//最大問題数
-	private String[] sentences= {"あいうえお","かきくけこ","さしすせそ","たちつてと"};
+	private String[] sentences= {"aiueo","aiueo","kakikukeko","tachituteto"};
 	
 	Sentences() {//難易度の番号を引数にするといいかな？
 		num=0;

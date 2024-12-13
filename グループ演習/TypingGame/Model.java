@@ -32,6 +32,7 @@ class Model extends Observable implements ActionListener {
 //-----ゲーム中の処理-----//
 	/*スタートしたら呼び出す*/
 	public void Game() {
+		//System.out.println("Game()");//debug
 		main.setFlag(1);//ゲーム画面の表示に切り替える
 		limit=0;
 		Time();//タイマーのスタート
@@ -48,18 +49,21 @@ class Model extends Observable implements ActionListener {
 		charnum=0;
 		sentence=sentences.newSentence();
 		length=sentence.length();
-		System.out.println(this.sentence);//errorcheck
+		System.out.println(length);
+		//System.out.println("makesentence");//debug
 	}
 	public String getSentence() {
 		return sentence;
 	}
 	/*入力文字列が合っているのかを調べる*/
 	public void Check (char c) {
-		//System.out.println(sentence);
+		System.out.println("checked");//error
 		char answer=sentence.charAt(charnum);
 		if(answer!=c) {Miss();}
+		charnum++;
 		if(charnum==length) {Correct();}
-		else{charnum++;}
+		//else{charnum++;}
+		System.out.println(charnum);
 	}
 	/*タイマーの管理*/
 	public int getTime() {
@@ -72,7 +76,7 @@ class Model extends Observable implements ActionListener {
 		notifyObservers();
 	}
 	public void actionPerformed(ActionEvent e) {
-		limit+=1000;//1秒ずつ経過する
+		//limit+=1000;//1秒ずつ経過する
 		if(limit>60000) {//60秒で終了
 			timer.stop();
 			Result();//結果画面の表示に切り替える
