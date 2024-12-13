@@ -12,7 +12,7 @@ public class Sentences {
 	}
 	
 	public String newSentence() {
-		String sentence;
+		String sentence=null;
 		switch(difficulty) {
 		case 1:
 			sentence=easy();

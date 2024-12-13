@@ -51,6 +51,9 @@ public class Model extends Observable implements ActionListener {
 		buffer=new StringBuffer(sentence);//文字列バッファに正解をセット
 		length=buffer.length();
 	}
+	public String getSentence() {
+		return sentence;
+	}
 	/*入力文字列が合っているのかを調べる*/
 	public void Check (char c) {
 		char answer=buffer.charAt(charnum);
