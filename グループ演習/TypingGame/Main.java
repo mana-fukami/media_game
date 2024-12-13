@@ -24,7 +24,7 @@ public class Main {
 		//結果ビューの作成
 		ResultView resultview=new ResultView();
 		//resultviewに対応するコントローラーの作成
-		Controller1 resultcont=new Controller1();
+		Controller3 resultcont=new Controller3();
 		switch(flag) {
 		case 0:
 			stayview.setVisible(true);
