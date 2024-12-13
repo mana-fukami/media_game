@@ -15,15 +15,14 @@ class Model extends Observable implements ActionListener {
 	private int limit;//経過した時間
 	
 	/* 文字列の管理に関する変数 */
-	private StringBuffer buffer;//文字列バッファ
 	private String sentence;//正解の文章
 	private int charnum;//入力された文字数
 	private int length;//文字列の長さ
 	
 	/*結果に関する変数*/
-	public int miss;
-	public int correct;
-	public int points;
+	private int miss;
+	private int correct;
+	private int points;
 	
 //-----待機画面での処理-----//
 	public void Stay() {
@@ -34,6 +33,7 @@ class Model extends Observable implements ActionListener {
 	/*スタートしたら呼び出す*/
 	public void Game() {
 		main.setFlag(1);//ゲーム画面の表示に切り替える
+		limit=0;
 		Time();//タイマーのスタート
 		sentences=new Sentences();//呼び出す問題集をつくる
 		miss=0;
@@ -47,16 +47,16 @@ class Model extends Observable implements ActionListener {
 	public void makeSentence() {
 		charnum=0;
 		sentence=sentences.newSentence();
-		buffer=new StringBuffer(sentence);//文字列バッファに正解をセット
-		length=buffer.length();
-		//System.out.println(sentence);//errorcheck
+		length=sentence.length();
+		System.out.println(this.sentence);//errorcheck
 	}
 	public String getSentence() {
 		return sentence;
 	}
 	/*入力文字列が合っているのかを調べる*/
 	public void Check (char c) {
-		char answer=buffer.charAt(charnum);
+		//System.out.println(sentence);
+		char answer=sentence.charAt(charnum);
 		if(answer!=c) {Miss();}
 		if(charnum==length) {Correct();}
 		else{charnum++;}
@@ -67,7 +67,9 @@ class Model extends Observable implements ActionListener {
 	}
 	public void Time() {
 		timer=new Timer(1000,this);
-		limit=0;
+		limit+=1000;
+		setChanged();
+		notifyObservers();
 	}
 	public void actionPerformed(ActionEvent e) {
 		limit+=1000;//1秒ずつ経過する

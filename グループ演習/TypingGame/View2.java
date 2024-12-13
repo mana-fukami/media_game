@@ -21,9 +21,9 @@ class GameView extends JFrame implements Observer{
     protected JTextField inputField;   // 入力場所←寿司打みたいに真ん中に置きたい
     protected JButton endButton;       // 終了ボタン
 
-    public GameView(Model model) {
-    	this.model=model;
-    	this.model.addObserver(this);
+    public GameView(Model m) {
+    	this.model=m;
+    	model.addObserver(this);
         setTitle("ゲーム名"); 
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +64,9 @@ class GameView extends JFrame implements Observer{
     }
     // observer→問題文と制限時間の更新
     public void update(Observable o, Object arg) {
+    	sentenceLabel.setText(model.getSentence());
         sentenceLabel.repaint();
+        timeLabel.setText(""+model.getTime());
         timeLabel.repaint();
     }
 }

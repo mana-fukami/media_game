@@ -9,7 +9,7 @@ public class Main {
 	//-----setter-----
 	public void setFlag(int num) {
 		flag=num;
-		main(null);
+		viewChange();
 		//System.out.println(flag);
 	}
 	//-----getter-----
@@ -33,6 +33,9 @@ public class Main {
 		/*ResultView*/ resultview=new ResultView();
 		//resultviewに対応するコントローラーの作成
 		Controller3 resultcont=new Controller3(resultview,model);
+		viewChange();
+	}
+	public static void viewChange() {
 		switch(flag) {
 		case 0:
 			stayview.setVisible(true);

@@ -1,14 +1,13 @@
 package TypingGame;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
 // 待機画面
 class Controller1 implements ActionListener {
     private StayView stayView;
     private Model model;
+    private Main main;
 
     public Controller1(StayView stayView, Model model) {
         this.stayView = stayView;
