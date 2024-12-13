@@ -1,9 +1,15 @@
 package TypingGame;
 
-import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 class GameView extends JFrame implements Observer{
     protected Model model;
@@ -16,6 +22,8 @@ class GameView extends JFrame implements Observer{
     protected JButton endButton;       // 終了ボタン
 
     public GameView(Model model) {
+    	this.model=model;
+    	this.model.addObserver(this);
         setTitle("ゲーム名"); 
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

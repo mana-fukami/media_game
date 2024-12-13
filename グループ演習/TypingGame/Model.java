@@ -2,11 +2,10 @@ package TypingGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Observable;
 
 import javax.swing.Timer;
 
-public class Model extends Observable implements ActionListener {
+class Model extends Observable implements ActionListener {
 	/* 別ファイルのクラスをインスタンス化しておく */
 	private Main main=new Main();
 	private Sentences sentences; 
@@ -50,6 +49,7 @@ public class Model extends Observable implements ActionListener {
 		sentence=sentences.newSentence();
 		buffer=new StringBuffer(sentence);//文字列バッファに正解をセット
 		length=buffer.length();
+		//System.out.println(sentence);//errorcheck
 	}
 	public String getSentence() {
 		return sentence;
