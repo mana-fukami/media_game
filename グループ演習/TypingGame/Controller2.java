@@ -5,9 +5,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.Timer;
+
 class Controller2 implements KeyListener,ActionListener{
     private GameView gameView;
     private Model model;
+    /* 制限時間に関する変数 */
+	private Timer timer;
+	private int limit;//経過した時間
 
     public Controller2(GameView gameView, Model model) {
         this.gameView = gameView;
@@ -16,8 +21,13 @@ class Controller2 implements KeyListener,ActionListener{
         // イベントリスナーを登録
         gameView.getInputField().addKeyListener(this);
         gameView.getEndButton().addActionListener(this);
-    }
 
+        
+    }
+    public void Time() {
+        timer=new Timer(1000,this);
+        model.setTime(-1000); // 1秒減らす
+    }
     // キー入力
     @Override
     public void keyTyped(KeyEvent e) {
