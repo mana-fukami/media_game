@@ -17,16 +17,14 @@ class Controller2 implements KeyListener,ActionListener{
     public Controller2(GameView gameView, Model model) {
         this.gameView = gameView;
         this.model = model;
-
         // イベントリスナーを登録
         gameView.getInputField().addKeyListener(this);
         gameView.getEndButton().addActionListener(this);
-
-        
-    }
-    public void Time() {
+        //timerの作成とスタート
+        limit=60000;
+        model.setTime(limit);
         timer=new Timer(1000,this);
-        model.setTime(-1000); // 1秒減らす
+        timer.start();
     }
     // キー入力
     @Override
@@ -44,6 +42,16 @@ class Controller2 implements KeyListener,ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == gameView.getEndButton()) {
             model.Result(); // 結果画面へ切り替える 
+            timer.stop();
+        }
+        if(model.getTime()==0) {
+        	model.Result();
+        	timer.stop();
+        }else {
+        	limit-=1000;
+        	model.setTime(limit);
+        	gameView.timeLabel.setText("残り時間"+model.getTime()/1000+"秒");
+        	//System.out.println(""+model.getTime());//debug
         }
     }
 }

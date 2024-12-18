@@ -65,13 +65,14 @@ class GameView extends JFrame implements Observer{
     // observer→問題文と制限時間の更新
     // ModelのsetChangedが呼び出されるたびにupdateが呼び出される。
     public void update(Observable o, Object arg) {
-        if (model.getTime() != 0) {
+        //if (model.getTime() != 0) {
     	    sentenceLabel.setText(model.getSentence());
             corLabel.setText("正解: "+model.getCorrect());
-            missLabel.setText("ミス: "+model.getCorrect());
-        }
+            missLabel.setText("ミス: "+model.getMiss());
+            inputField.setText(null);
+        //}
         //sentenceLabel.repaint();
-        timeLabel.setText("残り時間: "+model.getTime());
+        //timeLabel.setText("残り時間: "+model.getTime());
         //timeLabel.repaint();
     }
 }

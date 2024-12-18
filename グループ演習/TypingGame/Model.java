@@ -1,9 +1,6 @@
 package TypingGame;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-class Model extends Observable implements ActionListener {
+class Model extends Observable{
 	/* 別ファイルのクラスをインスタンス化しておく */
 	private Main main=new Main();
 	private Sentences sentences; 
@@ -36,8 +33,6 @@ class Model extends Observable implements ActionListener {
 		correct=0;
 		points=0;
 		makeSentence();
-		setChanged();
-		notifyObservers();
 	}
 	/*問題の作成*/
 	public void makeSentence() {
@@ -46,40 +41,32 @@ class Model extends Observable implements ActionListener {
 		length=sentence.length();
 		System.out.println(length);
 		//System.out.println("makesentence");//debug
+		setChanged();
+		notifyObservers();
 	}
 	public String getSentence() {
 		return sentence;
 	}
 	/*入力文字列が合っているのかを調べる*/
 	public void Check (char c) {
-		System.out.println("checked");//error
-		char answer=sentence.charAt(charnum);
-		if(answer!=c) {Miss();}
-		charnum++;
-		if(charnum==length) {Correct();}
-		//else{charnum++;}
+		//System.out.println("checked");//debug
+		if(charnum<length-1) {
+			char answer=sentence.charAt(charnum);
+			if(answer!=c) {Miss();}
+			else{charnum++;}
+		}else {
+			char answer=sentence.charAt(charnum);
+			if(answer!=c) {Miss();}
+			else{Correct();}
+		}
 		System.out.println(charnum);
 	}
 	/*タイマーの管理*/
 	public void setTime(int num) {
-		Time+=num;
+		Time=num;
 	}
 	public int getTime() {
 		return Time;
-	}
-	/*public void Time() {
-		timer=new Timer(1000,this);
-		limit+=1000;
-		setChanged();
-		notifyObservers();
-	}*/
-	public void actionPerformed(ActionEvent e) {
-		//limit+=1000;//1秒ずつ経過する
-		if(Time>60000) {//60秒で終了
-			Result();//結果画面の表示に切り替える
-		}
-		setChanged();
-		notifyObservers();
 	}
 	/*ポイントの管理*/
 	public void Point(int num) {
@@ -89,15 +76,11 @@ class Model extends Observable implements ActionListener {
 		correct++;
 		Point(5);//正解したら10点追加
 		makeSentence();
-		setChanged();
-		notifyObservers();
 	}
 	public void Miss() {
 		miss++;
 		Point(-5);//ミスしたら5点減点
 		makeSentence();
-		setChanged();
-		notifyObservers();
 	}
 	
 //-----結果表示での処理-----
