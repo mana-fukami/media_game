@@ -26,6 +26,7 @@ class Controller3 implements ActionListener {
         // 結果ビューに反映
         resultView.updateResults(score, correct, miss);
         // resultView.setVisible(true);
+        //
     }
 
     @Override

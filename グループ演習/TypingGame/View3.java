@@ -32,6 +32,7 @@ class ResultView extends JFrame {
         add(retryButton);
     }
 
+    //
     public void updateResults(int score, int correct, int miss) {
         scoreLabel.setText("スコア: " + score);
         correctLabel.setText("正解数: " + correct);

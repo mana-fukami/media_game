@@ -17,20 +17,20 @@ public class Main {
 	public int getFlag() {return flag;}
 	//-----メイン関数-----
 	public static void main(String[] args) {
-		//モデルの生成
+		// モデルの生成
 		model=new Model();
 		
-		//待機ビューの作成
+		// 待機ビューの作成
 		/*StayView*/ stayview=new StayView();
 		//stayviewに対応するコントローラーの作成
 		//Controller1 staycont=new Controller1(stayview,model);
 		
-		//ゲームビューの作成
+		// ゲームビューの作成
 		/*GameView*/ gameview=new GameView(model);
 		//gameviewに対応するコントローラーの作成
 		//Controller2 gamecont=new Controller2(gameview,model);
 		
-		//結果ビューの作成
+		// 結果ビューの作成
 		/*ResultView*/ resultview=new ResultView();
 		//resultviewに対応するコントローラーの作成
 		//Controller3 resultcont=new Controller3(resultview,model);
