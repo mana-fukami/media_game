@@ -51,6 +51,7 @@ public class Main {
 			gameview.setVisible(false);
 			resultview.setVisible(true);
 			Controller3 resultcont=new Controller3(resultview,model);
+			resultcont.showResults();
 			break;
 		}
 	}

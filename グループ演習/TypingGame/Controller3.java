@@ -17,6 +17,17 @@ class Controller3 implements ActionListener {
         resultView.getRetryButton().addActionListener(this);
     }
 
+    public void showResults() {
+        // モデルから結果情報を取得
+        int score = model.getPoints();
+        int correct = model.getCorrect();
+        int miss = model.getMiss();
+        
+        // 結果ビューに反映
+        resultView.updateResults(score, correct, miss);
+        // resultView.setVisible(true);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == resultView.getRetryButton()) {
