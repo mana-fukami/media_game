@@ -39,13 +39,20 @@ class Model extends Observable{
 		charnum=0;
 		sentence=sentences.newSentence();
 		length=sentence.length();
-		System.out.println(length);
+		//System.out.println(length);//debug
 		//System.out.println("makesentence");//debug
 		setChanged();
 		notifyObservers();
 	}
 	public String getSentence() {
-		return sentence;
+		String str=null;
+		if(charnum>0) {
+			str="<html><span style='color:black;'>"+sentence.substring(0,charnum)+"</span>"+
+		"<span style='color:gray;'>"+sentence.substring(charnum,length)+"</span></html>";
+		}else {
+			str="<html><span style='color:gray'>"+sentence+"</span></html>";
+		}
+		return str;
 	}
 	/*入力文字列が合っているのかを調べる*/
 	public void Check (char c) {
@@ -53,7 +60,11 @@ class Model extends Observable{
 		if(charnum<length-1) {
 			char answer=sentence.charAt(charnum);
 			if(answer!=c) {Miss();}
-			else{charnum++;}
+			else{
+				charnum++;
+				setChanged();
+				notifyObservers();
+			}
 		}else {
 			char answer=sentence.charAt(charnum);
 			if(answer!=c) {Miss();}
