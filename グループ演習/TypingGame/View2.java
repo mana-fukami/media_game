@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 class GameView extends JFrame implements Observer{
@@ -18,7 +17,7 @@ class GameView extends JFrame implements Observer{
     protected JLabel timeLabel;        // 残り時間を表示
     protected JLabel corLabel;         // 正解数を表示
     protected JLabel missLabel;        // ミス数を表示
-    protected JTextField inputField;   // 入力場所←寿司打みたいに真ん中に置きたい
+    //protected JTextField inputField;   // 入力場所←寿司打みたいに真ん中に置きたい
     protected JButton endButton;       // 終了ボタン
 
     public GameView(Model m) {
@@ -33,12 +32,12 @@ class GameView extends JFrame implements Observer{
         // ModelでgetSentenceメソッドを作る？
         sentenceLabel = new JLabel(""+model.getSentence(), SwingConstants.CENTER);
         sentenceLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        add(sentenceLabel, BorderLayout.NORTH);
+        add(sentenceLabel, BorderLayout.CENTER);
 
         // CENTERに入力Field
-        inputField = new JTextField();
-        inputField.setFont(new Font("Arial", Font.PLAIN, 18));
-        add(inputField, BorderLayout.CENTER);
+        //inputField = new JTextField();
+        //inputField.setFont(new Font("Arial", Font.PLAIN, 18));
+        //add(inputField, BorderLayout.CENTER);
 
         // SOUTHにスコア、時間、終了ボタン
         // Modelのgetメソッドを使うように変更を加えた
@@ -56,8 +55,8 @@ class GameView extends JFrame implements Observer{
         add(bottomPanel, BorderLayout.SOUTH);
     }
     // View内のsetメソッドらを消した
-    public JTextField getInputField() {
-        return inputField;
+    public JLabel getSentenceLabel() {
+        return sentenceLabel;
     }
     public JButton getEndButton() {
         return endButton;
@@ -69,7 +68,6 @@ class GameView extends JFrame implements Observer{
     	    sentenceLabel.setText(model.getSentence());
             corLabel.setText("正解: "+model.getCorrect());
             missLabel.setText("ミス: "+model.getMiss());
-            inputField.setText(null);
         //}
         //sentenceLabel.repaint();
         //timeLabel.setText("残り時間: "+model.getTime());

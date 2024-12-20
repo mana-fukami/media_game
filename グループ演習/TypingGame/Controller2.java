@@ -18,8 +18,10 @@ class Controller2 implements KeyListener,ActionListener{
         this.gameView = gameView;
         this.model = model;
         // イベントリスナーを登録
-        gameView.getInputField().addKeyListener(this);
-        gameView.getEndButton().addActionListener(this);
+        //gameView.getInputField().addKeyListener(this);
+        this.gameView.setFocusable(true);
+        this.gameView.addKeyListener(this);
+        this.gameView.getEndButton().addActionListener(this);
         //timerの作成とスタート
         limit=60000;
         model.setTime(limit);
@@ -29,7 +31,9 @@ class Controller2 implements KeyListener,ActionListener{
     // キー入力
     @Override
     public void keyTyped(KeyEvent e) {
+    	
         char typedChar = e.getKeyChar(); 
+        System.out.println(typedChar);
         model.Check(typedChar); // 文字が入力されたらCheckを呼び出す
     }
     @Override
