@@ -31,9 +31,8 @@ class Controller2 implements KeyListener,ActionListener{
     // キー入力
     @Override
     public void keyTyped(KeyEvent e) {
-    	
         char typedChar = e.getKeyChar(); 
-        System.out.println(typedChar);
+        //System.out.println(typedChar);//debug
         model.Check(typedChar); // 文字が入力されたらCheckを呼び出す
     }
     @Override

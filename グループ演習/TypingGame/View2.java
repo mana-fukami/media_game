@@ -69,6 +69,7 @@ class GameView extends JFrame implements Observer{
     public void update(Observable o, Object arg) {
         //if (model.getTime() != 0) {
     	    sentenceLabel.setText(model.getSentence());
+    	    scoreLabel.setText("スコア: "+model.getPoints());
             corLabel.setText("正解: "+model.getCorrect());
             missLabel.setText("ミス: "+model.getMiss());
         //}

@@ -48,7 +48,7 @@ class Model extends Observable{
 		String str=null;
 		if(charnum>0) {
 			str="<html><span style='color:black;'>"+sentence.substring(0,charnum)+"</span>"+
-		"<span style='color:gray;'>"+sentence.substring(charnum,length)+"</span></html>";
+					"<span style='color:gray;'>"+sentence.substring(charnum,length)+"</span></html>";
 		}else {
 			str="<html><span style='color:gray'>"+sentence+"</span></html>";
 		}
