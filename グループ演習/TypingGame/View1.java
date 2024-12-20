@@ -11,7 +11,7 @@ class StayView extends JFrame {
 
     public StayView() {
         setTitle("待機画面");
-        setSize(400, 300);
+        setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 

@@ -14,7 +14,7 @@ class ResultView extends JFrame {
 
     public ResultView() {
         setTitle("結果画面");
-        setSize(400, 300);
+        setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(4, 1));
 
