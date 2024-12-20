@@ -1,6 +1,5 @@
 package TypingGame;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
@@ -26,13 +25,18 @@ class GameView extends JFrame implements Observer{
         setTitle("ゲーム名"); 
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        setLayout(new  GridLayout(3,1));
+        
+        
+        timeLabel = new JLabel("残り時間:  "+model.getTime()+" 秒", SwingConstants.CENTER);
+        timeLabel.setFont(new Font("Arial",Font.ITALIC,20));
+        this.add(timeLabel);
 
         // NORTHに問題文←具体的な配置はまた相談して決めたい
         // ModelでgetSentenceメソッドを作る？
         sentenceLabel = new JLabel(""+model.getSentence(), SwingConstants.CENTER);
-        sentenceLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        add(sentenceLabel, BorderLayout.CENTER);
+        sentenceLabel.setFont(new Font("Arial", Font.BOLD, 40));
+        this.add(sentenceLabel);
 
         // CENTERに入力Field
         //inputField = new JTextField();
@@ -41,18 +45,17 @@ class GameView extends JFrame implements Observer{
 
         // SOUTHにスコア、時間、終了ボタン
         // Modelのgetメソッドを使うように変更を加えた
-        JPanel bottomPanel = new JPanel(new GridLayout(1, 5));
+        JPanel bottomPanel = new JPanel(new GridLayout(1, 4));
+        
         scoreLabel = new JLabel("スコア: "+model.getPoints(), SwingConstants.CENTER);
         corLabel = new JLabel("正解: "+model.getCorrect()+"個", SwingConstants.CENTER);
         missLabel = new JLabel("ミス: "+model.getMiss()+"個", SwingConstants.CENTER);
-        timeLabel = new JLabel("残り時間: "+model.getTime()+"秒", SwingConstants.CENTER);
         endButton = new JButton("ゲームを終了");
         bottomPanel.add(scoreLabel);
         bottomPanel.add(corLabel);
         bottomPanel.add(missLabel);
-        bottomPanel.add(timeLabel);
         bottomPanel.add(endButton);
-        add(bottomPanel, BorderLayout.SOUTH);
+        this.add(bottomPanel);
     }
     // View内のsetメソッドらを消した
     public JLabel getSentenceLabel() {

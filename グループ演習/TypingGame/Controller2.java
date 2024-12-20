@@ -54,7 +54,7 @@ class Controller2 implements KeyListener,ActionListener{
         }else {
         	limit-=1000;
         	model.setTime(limit);
-        	gameView.timeLabel.setText("残り時間"+model.getTime()/1000+"秒");
+        	gameView.timeLabel.setText("残り時間: "+model.getTime()/1000+" 秒");
         	//System.out.println(""+model.getTime());//debug
         }
     }
