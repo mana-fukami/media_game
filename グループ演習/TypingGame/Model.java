@@ -70,7 +70,7 @@ class Model extends Observable{
 			if(answer!=c) {Miss();}
 			else{Correct();}
 		}
-		System.out.println(charnum);
+		//System.out.println(charnum);//debug
 	}
 	/*タイマーの管理*/
 	public void setTime(int num) {
