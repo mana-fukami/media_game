@@ -62,12 +62,38 @@ class Model extends Observable{
 	 * ふ hu,fu
 	 * ん n,nn
 	 */
+	private char prevchar='\n';
 	public void Check (char c) {
 		//System.out.println("checked");//debug
 		if(charnum<length-1) {
 			char answer=sentence.charAt(charnum);
-			if(answer!=c) {Miss();}
-			else{
+			/*複数の入力パターンがあるものも許容するように*/
+			/*し,si,shi*/
+			if(sentence.charAt(charnum-1)=='s'&&answer=='i') {
+				if(c==answer) {charnum++;}
+				else if(c!='h') {Miss();}
+			}/*ち,ti,chi*/
+			else if(answer=='t'&&sentence.charAt(charnum+1)=='i') {
+				if(c==answer) {charnum++;}
+				else if(c=='c') {prevchar=c;}
+				else if(c=='h'&&prevchar=='c') {charnum++;prevchar='\n';}
+				else {Miss();}
+			}/*つ,tu,tsu*/
+			else if(sentence.charAt(charnum-1)=='t'&&answer=='u') {
+				if(c==answer) {charnum++;}
+				else if(c!='s') {Miss();}
+			}/*ふhu,fu*/
+			else if(answer=='h'&&sentence.charAt(charnum+1)=='u') {
+				if(c==answer) {charnum++;}
+				else if(c=='f') {charnum++;}
+				else {Miss();}
+			}/*ん,n,nn*/
+			else if(sentence.charAt(charnum-1)=='n') {
+				if(c==answer) {charnum++;}
+				else if(answer!='a'||answer!='i'||answer!='u'||answer!='e'||answer!='o') {
+					if(c!='n') {Miss();}
+				}
+			}else{
 				charnum++;
 				setChanged();
 				notifyObservers();
