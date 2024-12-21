@@ -55,6 +55,13 @@ class Model extends Observable{
 		return str;
 	}
 	/*入力文字列が合っているのかを調べる*/
+	/*複数の入力方式がある文字
+	 * し si,shi
+	 * ち ti,chi
+	 * つ tu,tsu
+	 * ふ hu,fu
+	 * ん n,nn
+	 */
 	public void Check (char c) {
 		//System.out.println("checked");//debug
 		if(charnum<length-1) {
