@@ -69,39 +69,66 @@ class Model extends Observable{
 			char answer=sentence.charAt(charnum);
 			/*複数の入力パターンがあるものも許容するように*/
 			/*し,si,shi*/
-			if(sentence.charAt(charnum-1)=='s'&&answer=='i') {
-				if(c==answer) {charnum++;}
-				else if(c!='h') {Miss();}
-			}/*ち,ti,chi*/
-			else if(answer=='t'&&sentence.charAt(charnum+1)=='i') {
+			if(answer=='s') {
+				if(c==answer) {prevchar=answer;}
+				else {Miss();}
+				return;
+			}
+			if(prevchar=='s'&&answer=='i') {
+				if(c==answer) {charnum++;prevchar='\n';}
+				else if(c=='h') {prevchar='\n';}
+				else {Miss();}
+				return;
+			}
+			/*つ,tu,tsu*/
+			if(answer=='t') {
+				if(c==answer) {prevchar=answer;}
+				else {Miss();}
+				return;
+			}
+			if(prevchar=='t'&&answer=='u') {
+				if(c==answer) {charnum++;prevchar='\n';}
+				else if(c=='s') {prevchar='\n';}
+				else {Miss();}
+				return;
+			}
+			/*ち,ti,chi*/
+			if(answer=='t') {
 				if(c==answer) {charnum++;}
 				else if(c=='c') {prevchar=c;}
-				else if(c=='h'&&prevchar=='c') {charnum++;prevchar='\n';}
 				else {Miss();}
-			}/*つ,tu,tsu*/
-			else if(sentence.charAt(charnum-1)=='t'&&answer=='u') {
-				if(c==answer) {charnum++;}
-				else if(c!='s') {Miss();}
-			}/*ふhu,fu*/
-			else if(answer=='h'&&sentence.charAt(charnum+1)=='u') {
-				if(c==answer) {charnum++;}
-				else if(c=='f') {charnum++;}
-				else {Miss();}
-			}/*ん,n,nn*/
-			else if(sentence.charAt(charnum-1)=='n') {
-				if(c==answer) {charnum++;}
-				else if(answer!='a'||answer!='i'||answer!='u'||answer!='e'||answer!='o') {
-					if(c!='n') {Miss();}
-				}
-			}else{
-				charnum++;
-				setChanged();
-				notifyObservers();
+				return;
 			}
+			if(prevchar=='c'&&answer=='i') {
+				if(c=='h') {prevchar='\n';}
+				else {Miss();}
+				return;
+			}
+			/*ふ,hu,fu*/
+			if(answer=='h'&&sentence.charAt(charnum+1)=='u') {
+				if(c==answer||c=='f') {charnum++;}
+				else {Miss();}
+				return;
+			}
+			/*ん,n,nn*/
+			if(answer=='n') {
+				if(c==answer) {charnum++;prevchar='n';}
+				else {Miss();}
+				return;
+			}
+			if(prevchar=='n'&&answer!='a'&&answer!='i'&&answer!='u'&&answer!='e'&&answer!='o') {
+				if(c==answer) {charnum++;prevchar='\n';}
+				else if(c=='n') {prevchar='\n';}
+				else {Miss();}
+				return;
+			}
+			if(c==answer) {charnum++;}
+			else {Miss();}
 		}else {
 			char answer=sentence.charAt(charnum);
 			if(answer!=c) {Miss();}
 			else{Correct();}
+			return;
 		}
 		//System.out.println(charnum);//debug
 	}
