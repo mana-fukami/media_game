@@ -23,8 +23,7 @@ class Controller2 implements KeyListener,ActionListener{
         this.gameView.addKeyListener(this);
         this.gameView.getEndButton().addActionListener(this);
         //timerの作成とスタート
-        limit=60000;
-        model.setTime(limit);
+        model.setTime(60);
         timer=new Timer(1000,this);
         timer.start();
     }
@@ -51,9 +50,8 @@ class Controller2 implements KeyListener,ActionListener{
         	model.Result();
         	timer.stop();
         }else {
-        	limit-=1000;
-        	model.setTime(limit);
-        	gameView.timeLabel.setText("残り時間: "+model.getTime()/1000+" 秒");
+        	model.setTime(-1);
+        	gameView.timeLabel.setText("残り時間: "+model.getTime()+" 秒");
         	//System.out.println(""+model.getTime());//debug
         }
     }
