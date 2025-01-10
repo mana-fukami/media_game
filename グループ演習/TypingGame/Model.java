@@ -1,5 +1,15 @@
 package TypingGame;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 class Model extends Observable{
 	/* 別ファイルのクラスをインスタンス化しておく */
 	private Main main=new Main();
@@ -105,14 +115,71 @@ class Model extends Observable{
 	public void Correct() {
 		correct++;
 		Point(5);//正解したら10点追加
+		correctSound();
 		makeSentence();
 	}
 	public void Miss() {
 		miss++;
-		Point(-5);//ミスしたら5点減点
-		makeSentence();
+		//Point(-5);//ミスしたら5点減点
+		missSound();
 	}
 	
+	/*効果音*/
+	public void correctSound() {
+		File file=new File("correct.wav");
+	    try {
+	    	//System.out.println(file.getAbsolutePath());//debug
+	        AudioInputStream originalStream = AudioSystem.getAudioInputStream(new File(file.getAbsolutePath()));
+	        AudioFormat originalFormat = originalStream.getFormat();
+	        AudioFormat targetFormat = new AudioFormat(
+	            AudioFormat.Encoding.PCM_SIGNED,
+	            originalFormat.getSampleRate(),
+	            16, // 16-bit
+	            originalFormat.getChannels(),
+	            originalFormat.getChannels() * 2, // Frame size
+	            originalFormat.getSampleRate(),
+	            false // little-endian
+	        );
+	        AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, originalStream);
+	        Clip clip = (Clip)AudioSystem.getClip();
+	        clip.open(convertedStream);
+	        clip.loop(0);
+	        clip.flush();
+	        while(clip.isActive()) {
+	            Thread.sleep(100);
+	        }
+	    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public void missSound() {
+		File file=new File("miss.wav");
+	    try {
+	    	//System.out.println(file.getAbsolutePath());//debug
+	        AudioInputStream originalStream = AudioSystem.getAudioInputStream(new File(file.getAbsolutePath()));
+	        AudioFormat originalFormat = originalStream.getFormat();
+	        AudioFormat targetFormat = new AudioFormat(
+	            AudioFormat.Encoding.PCM_SIGNED,
+	            originalFormat.getSampleRate(),
+	            16, // 16-bit
+	            originalFormat.getChannels(),
+	            originalFormat.getChannels() * 2, // Frame size
+	            originalFormat.getSampleRate(),
+	            false // little-endian
+	        );
+	        AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, originalStream);
+	        Clip clip = (Clip)AudioSystem.getClip();
+	        clip.open(convertedStream);
+	        clip.loop(0);
+	        clip.flush();
+	        while(clip.isActive()) {
+	            Thread.sleep(100);
+	        }
+	    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException | InterruptedException e) {
+	        e.printStackTrace();
+	    }
+	}
+    
 //-----結果表示での処理-----
 	/*getter*/
 	public int getPoints() {
