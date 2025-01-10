@@ -39,6 +39,7 @@ public class Main {
 	public static void viewChange() {
 		switch(flag) {
 		case 0:
+			resultview.setVisible(false);
 			stayview.setVisible(true);
 			Controller1 staycont=new Controller1(stayview,model);
 			break;
