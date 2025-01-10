@@ -7,40 +7,57 @@ import java.io.IOException;
 
 public class Sentences {
 	private int num;//呼び出す問題番号
-	private int difficulty;//難易度
-	private int max=4;//最大問題数
+	private int difficulty=1;//難易度
+	private int max=24;//最大問題数
 	private String sentence;
+	private String kanji;
+	private String filename;
 	
-	public Sentences() {//難易度の番号を引数にするといいかな？
+	public Sentences() {//難易度の番号を引数にするといいか
+		filename=null;
 		num=1;
-		this.difficulty=1;
-	}
-	
-	public String newSentence() {
-		String filename=null;
 		switch(difficulty) {
 		case 1:
-			filename="easy.txt";
+			filename="uec.txt";
 			break;
 		case 2:
 			break;
 		case 3:
 			break;
 		}
-		PickSentence(filename);
+	}
+	//-----getter-----//
+	public String getSentence() {
 		return sentence;
 	}
 	
-	private void PickSentence(String filename) {
+	public String getKanji() {
+		return kanji;
+	}
+	
+	public void newSentence() {
+		//System.out.println("generate");//debug
+		String str;
+		int id=-1;
 		try {
+			//System.out.println("str");//debug
 			File file=new File(filename);//読みこむファイルの指定
 			file=new File(file.getAbsolutePath());
 			if(file.exists()) {
+				//System.out.println("generated");//debug
 				/*ファイルを行ごとに読みこむ準備*/
 				FileReader filereader=new FileReader(file);
 				BufferedReader bufferedreader=new BufferedReader(filereader);
 				for(int i=0;i<num;i++) {
-					sentence=bufferedreader.readLine();
+					str=bufferedreader.readLine();
+					//System.out.println("generated");//debug
+					id=str.indexOf(",",0);
+					if(id!=-1) {
+						kanji=str.substring(0,id);
+						sentence=str.substring(id+1);
+					}else {
+						System.out.println("error");
+					}
 				}
 				num++;
 				if(num>max) {
@@ -56,6 +73,5 @@ public class Sentences {
 			e.printStackTrace();
 		}
 	}
-	
 
 }

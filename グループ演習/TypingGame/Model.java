@@ -9,7 +9,8 @@ class Model extends Observable{
 	private int Time;//経過した時間
 	
 	/* 文字列の管理に関する変数 */
-	private String sentence;//正解の文章
+	private String sentence;//ローマ字の文章
+	private String kanji;//漢字の文
 	private int charnum;//入力された文字数
 	private int length;//文字列の長さ
 	
@@ -26,7 +27,7 @@ class Model extends Observable{
 //-----ゲーム中の処理-----//
 	/*スタートしたら呼び出す*/
 	public void Game() {
-		System.out.println("Game()"); // debug
+		//System.out.println("Game()"); // debug
         main.setFlag(1);
         resetGame(); // ゲームの状態をリセット
 	}
@@ -43,7 +44,9 @@ class Model extends Observable{
 	/*問題の作成*/
 	public void makeSentence() {
 		charnum=0;
-		sentence=sentences.newSentence();
+		sentences.newSentence();
+		sentence=sentences.getSentence();
+		kanji=sentences.getKanji();
 		length=sentence.length();
 		//System.out.println(length);//debug
 		//System.out.println("makesentence");//debug
@@ -58,6 +61,10 @@ class Model extends Observable{
 		}else {
 			str="<html><span style='color:gray'>"+sentence+"</span></html>";
 		}
+		return str;
+	}
+	public String getKanji() {
+		String str="<html><span style='color:black;'>"+kanji+"</span></html>";
 		return str;
 	}
 	/*入力文字列が合っているのかを調べる*/
@@ -86,7 +93,7 @@ class Model extends Observable{
 	/*タイマーの管理*/
 	public void setTime(int num) {
 		Time+=num;
-		System.out.println(Time);
+		//System.out.println(Time);
 	}
 	public int getTime() {
 		return Time;
