@@ -13,6 +13,7 @@ class Controller2 implements KeyListener,ActionListener{
     /* 制限時間に関する変数 */
 	private Timer timer;
 	private int limit;//経過した時間
+    private boolean timerRunning = false; // タイマーの状態を追跡
 
     public Controller2(GameView gameView, Model model) {
         this.gameView = gameView;
@@ -22,11 +23,34 @@ class Controller2 implements KeyListener,ActionListener{
         this.gameView.setFocusable(true);
         this.gameView.addKeyListener(this);
         this.gameView.getEndButton().addActionListener(this);
-        //timerの作成とスタート
-        model.setTime(60);
-        timer=new Timer(1000,this);
-        timer.start();
+        // タイマーの初期化（まだ開始しない）
+        timer = new Timer(1000, this);
     }
+
+    public void startTimer() {
+        if (!timerRunning) {
+            model.setTime(60 - model.getTime()); // 制限時間をリセット
+            timer.start();
+            timerRunning = true;
+        }
+    }
+
+    public void resetTimer() {
+        if (timerRunning) {
+            timer.stop();
+            timerRunning = false;
+        }
+        model.setTime(60 - model.getTime()); // 制限時間をリセット
+        gameView.timeLabel.setText("残り時間: 60 秒"); 
+    }
+
+    public void resetGame() {
+        resetTimer(); // タイマーをリセット
+        model.resetGame(); // モデルをリセット
+        gameView.setFocusable(true); // 再フォーカス設定
+        gameView.requestFocusInWindow(); // キー入力を有効化
+    }
+
     // キー入力
     @Override
     public void keyTyped(KeyEvent e) {

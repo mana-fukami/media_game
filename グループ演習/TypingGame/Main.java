@@ -5,6 +5,10 @@ public class Main {
 	public static GameView gameview;
 	public static ResultView resultview;
 	public static Model model;
+
+	public static Controller1 stayController;
+    public static Controller2 gameController;
+    public static Controller3 resultController;
 	
 	public static int flag=0;//0:待機,1:ゲーム,2:結果
 	//-----setter-----
@@ -20,39 +24,35 @@ public class Main {
 		// モデルの生成
 		model=new Model();
 		
-		// 待機ビューの作成
-		/*StayView*/ stayview=new StayView();
-		//stayviewに対応するコントローラーの作成
-		//Controller1 staycont=new Controller1(stayview,model);
-		
-		// ゲームビューの作成
-		/*GameView*/ gameview=new GameView(model);
-		//gameviewに対応するコントローラーの作成
-		//Controller2 gamecont=new Controller2(gameview,model);
-		
-		// 結果ビューの作成
-		/*ResultView*/ resultview=new ResultView();
-		//resultviewに対応するコントローラーの作成
-		//Controller3 resultcont=new Controller3(resultview,model);
+		// ビューの生成
+        stayview = new StayView();
+        gameview = new GameView(model);
+        resultview = new ResultView();
+
+		// コントローラーの生成（初期化を一度だけ実施）
+        stayController = new Controller1(stayview, model);
+        gameController = new Controller2(gameview, model);
+        resultController = new Controller3(resultview, model);
+
 		viewChange();
 	}
+
 	public static void viewChange() {
 		switch(flag) {
 		case 0:
 			resultview.setVisible(false);
 			stayview.setVisible(true);
-			Controller1 staycont=new Controller1(stayview,model);
 			break;
 		case 1:
 			stayview.setVisible(false);
-			Controller2 gamecont=new Controller2(gameview,model);
 			gameview.setVisible(true);
+			gameController.resetGame();
+            gameController.startTimer();
 			break;
 		case 2:
 			gameview.setVisible(false);
 			resultview.setVisible(true);
-			Controller3 resultcont=new Controller3(resultview,model);
-			resultcont.showResults();
+			resultController.showResults();
 			break;
 		}
 	}

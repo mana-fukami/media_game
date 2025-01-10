@@ -26,14 +26,20 @@ class Model extends Observable{
 //-----ゲーム中の処理-----//
 	/*スタートしたら呼び出す*/
 	public void Game() {
-		//System.out.println("Game()");//debug
-		main.setFlag(1);//ゲーム画面の表示に切り替える
-		sentences=new Sentences();//呼び出す問題集をつくる
-		miss=0;
-		correct=0;
-		points=0;
-		makeSentence();
+		System.out.println("Game()"); // debug
+        main.setFlag(1);
+        resetGame(); // ゲームの状態をリセット
 	}
+	public void resetGame() {
+        this.Time = 60; // 制限時間を初期化
+        this.miss = 0;
+        this.correct = 0;
+        this.points = 0;
+        this.sentences = new Sentences();
+        makeSentence(); // 新しい問題を生成
+        setChanged();
+        notifyObservers();
+    }
 	/*問題の作成*/
 	public void makeSentence() {
 		charnum=0;
@@ -80,6 +86,7 @@ class Model extends Observable{
 	/*タイマーの管理*/
 	public void setTime(int num) {
 		Time+=num;
+		System.out.println(Time);
 	}
 	public int getTime() {
 		return Time;
