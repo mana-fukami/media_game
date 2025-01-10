@@ -11,7 +11,9 @@ import javax.swing.SwingConstants;
 
 class GameView extends JFrame implements Observer{
     protected Model model;
-    protected JLabel sentenceLabel;    // 問題文を表示
+    //protected JLabel sentenceLabel;    // 問題文を表示
+    protected JLabel romajiLabel;
+    protected JLabel kanjiLabel;
     protected JLabel scoreLabel;       // スコアを表示
     protected JLabel timeLabel;        // 残り時間を表示
     protected JLabel corLabel;         // 正解数を表示
@@ -33,10 +35,14 @@ class GameView extends JFrame implements Observer{
         this.add(timeLabel);
 
         // NORTHに問題文←具体的な配置はまた相談して決めたい
-        // ModelでgetSentenceメソッドを作る？
-        sentenceLabel = new JLabel(""+model.getSentence(), SwingConstants.CENTER);
-        sentenceLabel.setFont(new Font("Arial", Font.BOLD, 40));
-        this.add(sentenceLabel);
+        // ModelでgetSentenceメソッドを作る?
+        JPanel sentencePanel = new JPanel(new GridLayout(2,1));
+        romajiLabel = new JLabel(""+model.getSentence(), SwingConstants.CENTER);
+        kanjiLabel = new JLabel(""+model.getKanji(), SwingConstants.CENTER);
+        romajiLabel.setFont(new Font("Arial", Font.BOLD, 30));
+        sentencePanel.add(kanjiLabel);
+        sentencePanel.add(romajiLabel);
+        this.add(sentencePanel);
 
         // CENTERに入力Field
         //inputField = new JTextField();
@@ -58,9 +64,9 @@ class GameView extends JFrame implements Observer{
         this.add(bottomPanel);
     }
     // View内のsetメソッドらを消した
-    public JLabel getSentenceLabel() {
+    /*public JLabel getSentenceLabel() {
         return sentenceLabel;
-    }
+    }*/
     public JButton getEndButton() {
         return endButton;
     }
@@ -68,7 +74,8 @@ class GameView extends JFrame implements Observer{
     // ModelのsetChangedが呼び出されるたびにupdateが呼び出される。
     public void update(Observable o, Object arg) {
         //if (model.getTime() != 0) {
-    	    sentenceLabel.setText(model.getSentence());
+    	    romajiLabel.setText(model.getSentence());
+    	    kanjiLabel.setText(model.getKanji());
     	    scoreLabel.setText("スコア: "+model.getPoints());
             corLabel.setText("正解: "+model.getCorrect());
             missLabel.setText("ミス: "+model.getMiss());
