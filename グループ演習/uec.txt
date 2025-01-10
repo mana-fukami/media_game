@@ -1,0 +1,24 @@
+基礎科学実験,kisokagakujikkenn
+不確かさ,futashikasa
+ヤング率,yanguritsu
+クントの方法,kuntnohouhou
+共鳴振動数,kyoumeishindousuu
+剛体の運動,goutainoundou
+光電効果,koudenkouka
+プランク定数,purankuteisuu
+インピーダンス,inpiidansu
+分子量,bunshiryou
+反応速度,hannousokudo
+比色,hishoku
+合成アスピリン,gouseiasupirin
+ピクノメーター,pikunomeetaa
+見かけの質量,mikakeno shitsuryou
+基底状態,kiteijoutai
+共役分子,kyouyakubunshi
+共役二重結合,kyouyakunijuuketsugou
+軌道エネルギー,kidouenerugii
+電子遷移エネルギー,denshisenienerugii
+吸収極大,kyuushoukyokudai
+滴定量,tekiteiryou
+原子間距離,genshikankyori
+写像,shazou
