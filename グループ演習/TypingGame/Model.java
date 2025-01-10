@@ -66,7 +66,7 @@ class Model extends Observable{
 	public String getSentence() {
 		String str=null;
 		if(charnum>0) {
-			str="<html><span style='color:black;'>"+sentence.substring(0,charnum)+"</span>"+
+			str="<html><span style='color:white;'>"+sentence.substring(0,charnum)+"</span>"+
 					"<span style='color:gray;'>"+sentence.substring(charnum,length)+"</span></html>";
 		}else {
 			str="<html><span style='color:gray'>"+sentence+"</span></html>";
@@ -74,7 +74,7 @@ class Model extends Observable{
 		return str;
 	}
 	public String getKanji() {
-		String str="<html><span style='color:black;'>"+kanji+"</span></html>";
+		String str="<html><span style='color:white;'>"+kanji+"</span></html>";
 		return str;
 	}
 	/*入力文字列が合っているのかを調べる*/
