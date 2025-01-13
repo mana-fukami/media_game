@@ -8,16 +8,21 @@ import java.io.IOException;
 public class Sentences {
 	private int num;//呼び出す問題番号
 	private int difficulty=1;//難易度
-	private int max=24;//最大問題数
+	private int max;//最大問題数
 	private String sentence;
 	private String kanji;
 	private String filename;
 	
 	public Sentences() {//難易度の番号を引数にするといいか
 		filename=null;
-		num=1;
+		num=0;
 		switch(difficulty) {
+		case 0:
+			max=2;
+			filename="test.txt";
+			break;
 		case 1:
+			max=24;
 			filename="uec.txt";
 			break;
 		case 2:

@@ -23,6 +23,8 @@ class Model extends Observable{
 	private String kanji;//漢字の文
 	private int charnum;//入力された文字数
 	private int length;//文字列の長さ
+	private char prevchar;//前の文字
+	private char nextchar;//次の文字
 	
 	/*結果に関する変数*/
 	private int miss;
@@ -54,6 +56,8 @@ class Model extends Observable{
 	/*問題の作成*/
 	public void makeSentence() {
 		charnum=0;
+		prevchar='\n';
+		nextchar='\n';
 		sentences.newSentence();
 		sentence=sentences.getSentence();
 		kanji=sentences.getKanji();
@@ -78,21 +82,17 @@ class Model extends Observable{
 		return str;
 	}
 	/*入力文字列が合っているのかを調べる*/
-	/*複数の入力方式がある文字
-	 * し si,shi
-	 * ち ti,chi
-	 * つ tu,tsu
-	 * ふ hu,fu
-	 * ん n,nn
-	 */
 	public void Check (char c) {
 		//System.out.println("checked");//debug
+		char answer=sentence.charAt(charnum);
+		nextchar=sentence.charAt(charnum+1);
 		if(charnum<length-1) {
-			char answer=sentence.charAt(charnum);
-			if(c==answer) {charnum++;}
+			if(c==answer) {charnum++;prevchar=answer;}
+			else if(prevchar=='s'&&answer=='i') {
+				if(c=='h') {sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum);}
+			}
 			else {Miss();}
 		}else {
-			char answer=sentence.charAt(charnum);
 			if(answer!=c) {Miss();}
 			else{Correct();}
 		}
@@ -131,6 +131,7 @@ class Model extends Observable{
 	    	//System.out.println(file.getAbsolutePath());//debug
 	        AudioInputStream originalStream = AudioSystem.getAudioInputStream(new File(file.getAbsolutePath()));
 	        AudioFormat originalFormat = originalStream.getFormat();
+	        //音声のフォーマットを合わせる。
 	        AudioFormat targetFormat = new AudioFormat(
 	            AudioFormat.Encoding.PCM_SIGNED,
 	            originalFormat.getSampleRate(),
@@ -158,6 +159,7 @@ class Model extends Observable{
 	    	//System.out.println(file.getAbsolutePath());//debug
 	        AudioInputStream originalStream = AudioSystem.getAudioInputStream(new File(file.getAbsolutePath()));
 	        AudioFormat originalFormat = originalStream.getFormat();
+	        //音声のフォーマットを合わせる。
 	        AudioFormat targetFormat = new AudioFormat(
 	            AudioFormat.Encoding.PCM_SIGNED,
 	            originalFormat.getSampleRate(),
