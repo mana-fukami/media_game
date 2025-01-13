@@ -7,13 +7,12 @@ import java.io.IOException;
 
 public class Sentences {
 	private int num;//呼び出す問題番号
-	private int difficulty=1;//難易度
 	private int max;//最大問題数
 	private String sentence;
 	private String kanji;
 	private String filename;
 	
-	public Sentences() {//難易度の番号を引数にするといいか
+	public Sentences(int difficulty) {//難易度の番号を引数にするといいか
 		filename=null;
 		num=1;
 		switch(difficulty) {

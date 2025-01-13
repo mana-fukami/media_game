@@ -24,6 +24,7 @@ class Model extends Observable{
 	private int charnum;//入力された文字数
 	private int length;//文字列の長さ
 	private char prevchar;//前の文字
+	public int difficulty;
 	
 	/*結果に関する変数*/
 	private int miss;
@@ -33,6 +34,9 @@ class Model extends Observable{
 //-----待機画面での処理-----//
 	public void Stay() {
 		main.setFlag(0);
+	}
+	public void setDifficulty(int num) {
+		difficulty=num;
 	}
 	
 //-----ゲーム中の処理-----//
@@ -47,7 +51,7 @@ class Model extends Observable{
         this.miss = 0;
         this.correct = 0;
         this.points = 0;
-        this.sentences = new Sentences();
+        this.sentences = new Sentences(difficulty);
         makeSentence(); // 新しい問題を生成
         setChanged();
         notifyObservers();
