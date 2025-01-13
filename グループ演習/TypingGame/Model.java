@@ -24,7 +24,6 @@ class Model extends Observable{
 	private int charnum;//入力された文字数
 	private int length;//文字列の長さ
 	private char prevchar;//前の文字
-	private char nextchar;//次の文字
 	
 	/*結果に関する変数*/
 	private int miss;
@@ -57,7 +56,6 @@ class Model extends Observable{
 	public void makeSentence() {
 		charnum=0;
 		prevchar='\n';
-		nextchar='\n';
 		sentences.newSentence();
 		sentence=sentences.getSentence();
 		kanji=sentences.getKanji();
@@ -85,16 +83,119 @@ class Model extends Observable{
 	public void Check (char c) {
 		//System.out.println("checked");//debug
 		char answer=sentence.charAt(charnum);
-		nextchar=sentence.charAt(charnum+1);
 		if(charnum<length-1) {
-			if(c==answer) {charnum++;prevchar=answer;}
-			else if(prevchar=='s'&&answer=='i') {
-				if(c=='h') {sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum);}
-			}
-			else {Miss();}
+			if(c==answer) {
+				charnum++;prevchar=answer;
+			}else if(prevchar=='s'&&answer=='i') {
+				if(c=='h') {
+					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(prevchar=='t'&&answer=='u') {
+				if(c=='s') {
+					sentence=sentence.substring(0,charnum)+"s"+sentence.substring(charnum);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(prevchar=='s'&&answer=='y') {
+				if(c=='h') {
+					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(answer=='t'&&sentence.charAt(charnum+1)=='i'){
+				if(c=='c') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}
+			}else if(answer=='h'&&sentence.charAt(charnum+1)=='u'){
+				if(c=='f') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"f"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}
+			}else if(answer=='z'&&sentence.charAt(charnum+1)=='i'){
+				if(c=='j') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}
+			}else if(answer=='z'&&sentence.charAt(charnum+1)=='y'){
+				if(c=='j') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+2);
+					length=sentence.length();
+					charnum++;
+				}
+			}else if(answer=='t'&&sentence.charAt(charnum+1)=='y'){
+				if(c=='c') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+2);
+					length=sentence.length();
+					charnum++;
+				}
+			}else {Miss();}
 		}else {
-			if(answer!=c) {Miss();}
-			else{Correct();}
+			if(answer==c) {Correct();}
+			else if(prevchar=='s'&&answer=='i') {
+				if(c=='h') {
+					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum);
+					length=sentence.length();
+					charnum++;
+				}else if(answer=='t'&&sentence.charAt(charnum+1)=='i'){
+					if(c=='c') {
+						prevchar=c;
+						sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+1);
+						length=sentence.length();
+						charnum++;
+					}
+				}else if(answer=='h'&&sentence.charAt(charnum+1)=='u'){
+					if(c=='f') {
+						prevchar=c;
+						sentence=sentence.substring(0,charnum)+"f"+sentence.substring(charnum+1);
+						length=sentence.length();
+						charnum++;
+					}
+				}else if(answer=='z'&&sentence.charAt(charnum+1)=='i'){
+					if(c=='j') {
+						prevchar=c;
+						sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+1);
+						length=sentence.length();
+						charnum++;
+					}
+				}else if(answer=='z'&&sentence.charAt(charnum+1)=='y'){
+					if(c=='j') {
+						prevchar=c;
+						sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+2);
+						length=sentence.length();
+						charnum++;
+					}
+				}else if(answer=='t'&&sentence.charAt(charnum+1)=='y'){
+					if(c=='c') {
+						prevchar=c;
+						sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+2);
+						length=sentence.length();
+						charnum++;
+					}
+				}else {Miss();}
+			}else if(prevchar=='t'&&answer=='u') {
+				if(c=='s') {
+					sentence=sentence.substring(0,charnum)+"s"+sentence.substring(charnum);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(prevchar=='s'&&answer=='y') {
+				if(c=='h') {
+					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else{Miss();}
 		}
 		setChanged();
 		notifyObservers();

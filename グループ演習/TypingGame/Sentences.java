@@ -15,7 +15,7 @@ public class Sentences {
 	
 	public Sentences() {//難易度の番号を引数にするといいか
 		filename=null;
-		num=0;
+		num=1;
 		switch(difficulty) {
 		case 0:
 			max=2;
