@@ -23,7 +23,7 @@ public class Main {
 	public static void main(String[] args) {
 		// モデルの生成
 		model=new Model();
-			//文字入力のローマ字は"ローマ字入力表別フォント.pdf"の()じゃない方で指定
+		//文字入力のローマ字は"ローマ字入力表別フォント.pdf"の()じゃない方で指定
 		// ビューの生成
         stayview = new StayView();
         gameview = new GameView(model);

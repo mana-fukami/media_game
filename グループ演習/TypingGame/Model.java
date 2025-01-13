@@ -24,7 +24,7 @@ class Model extends Observable{
 	private int charnum;//入力された文字数
 	private int length;//文字列の長さ
 	private char prevchar;//前の文字
-	public int difficulty;
+	public int difficulty=1;
 	
 	/*結果に関する変数*/
 	private int miss;
@@ -64,8 +64,6 @@ class Model extends Observable{
 		sentence=sentences.getSentence();
 		kanji=sentences.getKanji();
 		length=sentence.length();
-		//System.out.println(length);//debug
-		//System.out.println("makesentence");//debug
 		setChanged();
 		notifyObservers();
 	}
@@ -85,63 +83,67 @@ class Model extends Observable{
 	}
 	/*入力文字列が合っているのかを調べる*/
 	public void Check (char c) {
-		//System.out.println("checked");//debug
 		char answer=sentence.charAt(charnum);
 		if(charnum<length-1) {
 			if(c==answer) {
 				charnum++;prevchar=answer;
-			}else if(prevchar=='s'&&answer=='i') {
+			}else if(prevchar=='s'&&answer=='i') {//si,shi
 				if(c=='h') {
 					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum);
 					length=sentence.length();
 					charnum++;
 				}else {Miss();}
-			}else if(prevchar=='t'&&answer=='u') {
+			}else if(prevchar=='t'&&answer=='u') {//tu,tsu
 				if(c=='s') {
 					sentence=sentence.substring(0,charnum)+"s"+sentence.substring(charnum);
 					length=sentence.length();
 					charnum++;
 				}else {Miss();}
-			}else if(prevchar=='s'&&answer=='y') {
+			}else if(prevchar=='s'&&answer=='y') {//sya,sha etc.
 				if(c=='h') {
 					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum+1);
 					length=sentence.length();
 					charnum++;
 				}else {Miss();}
-			}else if(answer=='t'&&sentence.charAt(charnum+1)=='i'){
+			}else if(answer=='t'&&sentence.charAt(charnum+1)=='i'){//ti,chi
 				if(c=='c') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+1);
 					length=sentence.length();
 					charnum++;
 				}
-			}else if(answer=='h'&&sentence.charAt(charnum+1)=='u'){
+			}else if(answer=='h'&&sentence.charAt(charnum+1)=='u'){//hu,fu
 				if(c=='f') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"f"+sentence.substring(charnum+1);
 					length=sentence.length();
 					charnum++;
 				}
-			}else if(answer=='z'&&sentence.charAt(charnum+1)=='i'){
+			}else if(answer=='z'&&sentence.charAt(charnum+1)=='i'){//zi,ji etc.
 				if(c=='j') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+1);
 					length=sentence.length();
 					charnum++;
 				}
-			}else if(answer=='z'&&sentence.charAt(charnum+1)=='y'){
+			}else if(answer=='z'&&sentence.charAt(charnum+1)=='y'){//zya,ja etc.
 				if(c=='j') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+2);
 					length=sentence.length();
 					charnum++;
 				}
-			}else if(answer=='t'&&sentence.charAt(charnum+1)=='y'){
+			}else if(answer=='t'&&sentence.charAt(charnum+1)=='y'){//tya,cha etc.
 				if(c=='c') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+2);
 					length=sentence.length();
 					charnum++;
+				}
+			}else if(prevchar=='n'&&answer!='a'&&answer!='i'&&answer!='u'&&answer!='e'&&answer!='o'){
+				if(c=='n') {
+					sentence=sentence.substring(0,charnum)+'n'+sentence.substring(charnum);
+					charnum++;length=sentence.length();
 				}
 			}else {Miss();}
 		}else {
@@ -199,16 +201,19 @@ class Model extends Observable{
 					length=sentence.length();
 					charnum++;
 				}else {Miss();}
+			}else if(prevchar=='n'&&answer!='a'&&answer!='i'&&answer!='u'&&answer!='e'&&answer!='o'){
+				if(c=='n') {
+					sentence=sentence.substring(0,charnum)+'n'+sentence.substring(charnum);
+					charnum++;length=sentence.length();
+				}
 			}else{Miss();}
 		}
 		setChanged();
 		notifyObservers();
-		//System.out.println(charnum);//debug
 	}
 	/*タイマーの管理*/
 	public void setTime(int num) {
 		Time+=num;
-		//System.out.println(Time);
 	}
 	public int getTime() {
 		return Time;
@@ -225,7 +230,6 @@ class Model extends Observable{
 	}
 	public void Miss() {
 		miss++;
-		//Point(-5);//ミスしたら5点減点
 		missSound();
 	}
 	
@@ -233,7 +237,6 @@ class Model extends Observable{
 	public void correctSound() {
 		File file=new File("correct.wav");
 	    try {
-	    	//System.out.println(file.getAbsolutePath());//debug
 	        AudioInputStream originalStream = AudioSystem.getAudioInputStream(new File(file.getAbsolutePath()));
 	        AudioFormat originalFormat = originalStream.getFormat();
 	        //音声のフォーマットを合わせる。
@@ -261,7 +264,6 @@ class Model extends Observable{
 	public void missSound() {
 		File file=new File("miss.wav");
 	    try {
-	    	//System.out.println(file.getAbsolutePath());//debug
 	        AudioInputStream originalStream = AudioSystem.getAudioInputStream(new File(file.getAbsolutePath()));
 	        AudioFormat originalFormat = originalStream.getFormat();
 	        //音声のフォーマットを合わせる。

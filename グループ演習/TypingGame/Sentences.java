@@ -44,11 +44,9 @@ public class Sentences {
 		String str;
 		int id=-1;
 		try {
-			//System.out.println("str");//debug
 			File file=new File(filename);//読みこむファイルの指定
 			file=new File(file.getAbsolutePath());
 			if(file.exists()) {
-				//System.out.println("generated");//debug
 				/*ファイルを行ごとに読みこむ準備*/
 				FileReader filereader=new FileReader(file);
 				BufferedReader bufferedreader=new BufferedReader(filereader);
@@ -69,7 +67,6 @@ public class Sentences {
 				}
 				bufferedreader.close();//ファイルを閉じる
 			}else {
-				//"C:\Users\mana\Desktop\大学\メディア演習\グループ演習\TypingGame\easy.txt"
 				System.out.println("ファイルが存在しません\n"+file);
 				return;
 			}
