@@ -1,5 +1,6 @@
 package TypingGame;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -18,6 +19,8 @@ class BackgroundPanel extends JPanel {
     public BackgroundPanel(String imagePath) {
         // 背景画像をロード
         backgroundImage = new ImageIcon(imagePath).getImage();
+     // レイアウトをBorderLayoutに設定
+        setLayout(new BorderLayout());
     }
 
     @Override
@@ -48,7 +51,7 @@ class GameView extends JFrame implements Observer{
     	
     	// 背景画像付きのパネルを設定
         BackgroundPanel backgroundPanel = new BackgroundPanel("blackboard.png");
-        backgroundPanel.setLayout(new GridLayout(3, 1));
+        //backgroundPanel.setLayout(new GridLayout(3, 1));
         setContentPane(backgroundPanel);
         
         setTitle("ゲーム名"); 
@@ -56,10 +59,11 @@ class GameView extends JFrame implements Observer{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setLayout(new  GridLayout(3,1));
         
-        
+        JPanel topPanel = new JPanel();
         timeLabel = new JLabel("残り時間:  "+model.getTime()+" 秒", SwingConstants.CENTER);
-        timeLabel.setFont(new Font("Arial",Font.ITALIC,20));
-        this.add(timeLabel);
+        topPanel.add(timeLabel);
+        timeLabel.setFont(new Font("Arial",Font.ITALIC,30));
+        //topPanel.setMinimumSize(new Dimension(0,200)); // 幅は自動、高さ..px
 
         // NORTHに問題文←具体的な配置はまた相談して決めたい
         // ModelでgetSentenceメソッドを作る?
@@ -71,8 +75,8 @@ class GameView extends JFrame implements Observer{
         kanjiLabel.setFont(new Font("Arial", Font.BOLD, 50));
         sentencePanel.add(kanjiLabel);
         sentencePanel.add(romajiLabel);
-        this.add(sentencePanel);
-
+        //this.add(sentencePanel);
+        
         // CENTERに入力Field
         //inputField = new JTextField();
         //inputField.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -90,7 +94,11 @@ class GameView extends JFrame implements Observer{
         bottomPanel.add(corLabel);
         bottomPanel.add(missLabel);
         bottomPanel.add(endButton);
-        this.add(bottomPanel);
+        
+        backgroundPanel.add(timeLabel, BorderLayout.NORTH);
+        backgroundPanel.add(sentencePanel, BorderLayout.CENTER);
+        backgroundPanel.add(bottomPanel, BorderLayout.SOUTH);
+        
     }
     // View内のsetメソッドらを消した
     /*public JLabel getSentenceLabel() {
