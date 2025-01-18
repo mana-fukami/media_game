@@ -109,93 +109,94 @@ class Model extends Observable{
 					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+1);
 					length=sentence.length();
 					charnum++;
-				}
+				}else {Miss();}
 			}else if(answer=='h'&&sentence.charAt(charnum+1)=='u'){//hu,fu
 				if(c=='f') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"f"+sentence.substring(charnum+1);
 					length=sentence.length();
 					charnum++;
-				}
+				}else {Miss();}
 			}else if(answer=='z'&&sentence.charAt(charnum+1)=='i'){//zi,ji etc.
 				if(c=='j') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+1);
 					length=sentence.length();
 					charnum++;
-				}
+				}else {Miss();}
 			}else if(answer=='z'&&sentence.charAt(charnum+1)=='y'){//zya,ja etc.
 				if(c=='j') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+2);
 					length=sentence.length();
 					charnum++;
-				}
+				}else {Miss();}
 			}else if(answer=='t'&&sentence.charAt(charnum+1)=='y'){//tya,cha etc.
 				if(c=='c') {
 					prevchar=c;
 					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+2);
 					length=sentence.length();
 					charnum++;
-				}
+				}else {Miss();}
 			}else if(prevchar=='n'&&answer!='a'&&answer!='i'&&answer!='u'&&answer!='e'&&answer!='o'){
 				if(c=='n') {
 					sentence=sentence.substring(0,charnum)+'n'+sentence.substring(charnum);
 					charnum++;length=sentence.length();
-				}
+				}else{Miss();}
 			}else {Miss();}
 		}else {
-			if(answer==c) {Correct();}
-			else if(prevchar=='s'&&answer=='i') {
+			if(c==answer) {
+				charnum++;prevchar=answer;
+			}else if(prevchar=='s'&&answer=='i') {//si,shi
 				if(c=='h') {
 					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum);
 					length=sentence.length();
 					charnum++;
-				}else if(answer=='t'&&sentence.charAt(charnum+1)=='i'){
-					if(c=='c') {
-						prevchar=c;
-						sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+1);
-						length=sentence.length();
-						charnum++;
-					}
-				}else if(answer=='h'&&sentence.charAt(charnum+1)=='u'){
-					if(c=='f') {
-						prevchar=c;
-						sentence=sentence.substring(0,charnum)+"f"+sentence.substring(charnum+1);
-						length=sentence.length();
-						charnum++;
-					}
-				}else if(answer=='z'&&sentence.charAt(charnum+1)=='i'){
-					if(c=='j') {
-						prevchar=c;
-						sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+1);
-						length=sentence.length();
-						charnum++;
-					}
-				}else if(answer=='z'&&sentence.charAt(charnum+1)=='y'){
-					if(c=='j') {
-						prevchar=c;
-						sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+2);
-						length=sentence.length();
-						charnum++;
-					}
-				}else if(answer=='t'&&sentence.charAt(charnum+1)=='y'){
-					if(c=='c') {
-						prevchar=c;
-						sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+2);
-						length=sentence.length();
-						charnum++;
-					}
 				}else {Miss();}
-			}else if(prevchar=='t'&&answer=='u') {
+			}else if(prevchar=='t'&&answer=='u') {//tu,tsu
 				if(c=='s') {
 					sentence=sentence.substring(0,charnum)+"s"+sentence.substring(charnum);
 					length=sentence.length();
 					charnum++;
 				}else {Miss();}
-			}else if(prevchar=='s'&&answer=='y') {
+			}else if(prevchar=='s'&&answer=='y') {//sya,sha etc.
 				if(c=='h') {
 					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(answer=='t'&&sentence.charAt(charnum+1)=='i'){//ti,chi
+				if(c=='c') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(answer=='h'&&sentence.charAt(charnum+1)=='u'){//hu,fu
+				if(c=='f') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"f"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(answer=='z'&&sentence.charAt(charnum+1)=='i'){//zi,ji etc.
+				if(c=='j') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+1);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(answer=='z'&&sentence.charAt(charnum+1)=='y'){//zya,ja etc.
+				if(c=='j') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"j"+sentence.substring(charnum+2);
+					length=sentence.length();
+					charnum++;
+				}else {Miss();}
+			}else if(answer=='t'&&sentence.charAt(charnum+1)=='y'){//tya,cha etc.
+				if(c=='c') {
+					prevchar=c;
+					sentence=sentence.substring(0,charnum)+"ch"+sentence.substring(charnum+2);
 					length=sentence.length();
 					charnum++;
 				}else {Miss();}
@@ -203,8 +204,8 @@ class Model extends Observable{
 				if(c=='n') {
 					sentence=sentence.substring(0,charnum)+'n'+sentence.substring(charnum);
 					charnum++;length=sentence.length();
-				}
-			}else{Miss();}
+				}else{Miss();}
+			}else {Miss();}
 		}
 		setChanged();
 		notifyObservers();
