@@ -38,7 +38,7 @@ public class Sentences {
 	public String getKanji() {
 		return kanji;
 	}
-	
+	//-----新しい問題文の読み込み-----//
 	public void newSentence() {
 		//System.out.println("generate");//debug
 		String str;

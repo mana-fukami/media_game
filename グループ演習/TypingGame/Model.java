@@ -19,12 +19,12 @@ class Model extends Observable{
 	private int Time;//経過した時間
 	
 	/* 文字列の管理に関する変数 */
-	private String sentence;//ローマ字の文章
-	private String kanji;//漢字の文
+	private String sentence;//ローマ字の文
+	private String kanji;//日本語入力された文字数の文
 	private int charnum;//入力された文字数
-	private int length;//文字列の長さ
-	private char prevchar;//前の文字
-	public int difficulty=1;
+	private int length;//入力する文字列の長さ
+	private char prevchar;//前に入力された文字
+	public int difficulty=1;//難易度
 	
 	/*結果に関する変数*/
 	private int miss;
@@ -53,8 +53,6 @@ class Model extends Observable{
         this.points = 0;
         this.sentences = new Sentences(difficulty);
         makeSentence(); // 新しい問題を生成
-        setChanged();
-        notifyObservers();
     }
 	/*問題の作成*/
 	public void makeSentence() {
@@ -225,6 +223,7 @@ class Model extends Observable{
 	public void Correct() {
 		correct++;
 		Point(5);//正解したら10点追加
+		setTime(length/5);//正解したら制限時間プラス
 		correctSound();
 		makeSentence();
 	}
