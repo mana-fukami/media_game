@@ -1,4 +1,4 @@
-線形代数,sennkeidaisu
+線形代数,sennkeidaisuu
 行列,gyouretu
 上三角行列,uesannkakugyouretsu
 行基本変形,gyoukihonhenkei

@@ -17,17 +17,19 @@ public class Sentences {
 		num=1;
 		switch(difficulty) {
 		case 0:
-			max=2;
-			filename="test.txt";
+			max=24;
+			filename="kiso.txt";
 			break;
 		case 1:
-			max=24;
-			filename="uec.txt";
+			max=22;
+			filename="senkei.txt";
 			break;
 		case 2:
+			max=25;
+			filename="biseki.txt";
 			break;
-		case 3:
-			break;
+		default:
+			throw new IllegalArgumentException("無効な難易度: " + difficulty);
 		}
 	}
 	//-----getter-----//

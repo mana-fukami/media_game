@@ -27,15 +27,15 @@ class StayView extends JFrame {
             "<html><div style='text-align: center; font-size: 16px; color: black; font-weight: bold;'>ステージを選択してください</div></html>",
             SwingConstants.CENTER
         );
-        levelLabel.setBounds(0, 200, 1000, 50); // 座標とサイズを設定
+        levelLabel.setBounds(0, 225, 1000, 50); // 座標とサイズを設定
         backgroundPanel.add(levelLabel);
 
-        JLabel startLabel = new JLabel(
-            "<html><div style='text-align: center; font-size: 16px; color: black; font-weight: bold;'>ゲームを開始するにはスペースキーを押してください</div></html>",
-            SwingConstants.CENTER
-        );
-        startLabel.setBounds(0, 225, 1000, 50); // 座標とサイズを設定
-        backgroundPanel.add(startLabel);
+        // JLabel startLabel = new JLabel(
+        //     "<html><div style='text-align: center; font-size: 16px; color: black; font-weight: bold;'>ゲームを開始するにはスペースキーを押してください</div></html>",
+        //     SwingConstants.CENTER
+        // );
+        // startLabel.setBounds(0, 225, 1000, 50); // 座標とサイズを設定
+        // backgroundPanel.add(startLabel);
 
         // レベル選択ボタンを配置
         levelEasyButton = createLevelButton("基礎科学実験");
