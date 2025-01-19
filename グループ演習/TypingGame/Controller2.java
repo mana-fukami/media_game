@@ -41,7 +41,7 @@ class Controller2 implements KeyListener,ActionListener{
             timerRunning = false;
         }
         model.setTime(60 - model.getTime()); // 制限時間をリセット
-        gameView.timeLabel.setText("残り時間: 60 秒"); 
+        gameView.timeLabel.setText("60”00 秒"); 
     }
 
     public void resetGame() {
@@ -75,7 +75,7 @@ class Controller2 implements KeyListener,ActionListener{
         	timer.stop();
         }else {
         	model.setTime(-1);
-        	gameView.timeLabel.setText("残り時間: "+model.getTime()+" 秒");
+        	gameView.timeLabel.setText(model.getTime()+"”00 秒");
         	//System.out.println(""+model.getTime());//debug
         }
     }

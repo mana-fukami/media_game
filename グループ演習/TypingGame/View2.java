@@ -1,6 +1,5 @@
 package TypingGame;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -20,7 +19,7 @@ class BackgroundPanel extends JPanel {
         // 背景画像をロード
         backgroundImage = new ImageIcon(imagePath).getImage();
      // レイアウトをBorderLayoutに設定
-        setLayout(new BorderLayout());
+        setLayout(new GridLayout(3,1));
     }
 
     @Override
@@ -48,24 +47,25 @@ class GameView extends JFrame implements Observer{
     	model.addObserver(this);
     	
     	// 背景画像付きのパネルを設定
-        BackgroundPanel backgroundPanel = new BackgroundPanel("blackboard.png");
+        BackgroundPanel backgroundPanel = new BackgroundPanel("bb.png");
         setContentPane(backgroundPanel);
         
         setTitle("ゲーム名"); 
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
+        
         JPanel topPanel = new JPanel();
-        timeLabel = new JLabel("残り時間:  "+model.getTime()+" 秒", SwingConstants.CENTER);
+        timeLabel = new JLabel(model.getTime()+"”00 秒", SwingConstants.CENTER);
         topPanel.add(timeLabel);
-        timeLabel.setFont(new Font("Arial",Font.ITALIC,30));
+        timeLabel.setFont(new Font("Impact",Font.PLAIN, 30));
 
         JPanel sentencePanel = new JPanel(new GridLayout(2,1));
         sentencePanel.setOpaque(false); // 背景を透過
         romajiLabel = new JLabel(""+model.getSentence(), SwingConstants.CENTER);
         kanjiLabel = new JLabel(""+model.getKanji(), SwingConstants.CENTER);
-        romajiLabel.setFont(new Font("Arial", Font.BOLD, 40));
-        kanjiLabel.setFont(new Font("Arial", Font.BOLD, 50));
+        romajiLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
+        kanjiLabel.setFont(new Font("Times New Roman", Font.BOLD, 50));
         sentencePanel.add(kanjiLabel);
         sentencePanel.add(romajiLabel);
         
@@ -80,9 +80,9 @@ class GameView extends JFrame implements Observer{
         bottomPanel.add(missLabel);
         bottomPanel.add(endButton);
         
-        backgroundPanel.add(timeLabel, BorderLayout.NORTH);
-        backgroundPanel.add(sentencePanel, BorderLayout.CENTER);
-        backgroundPanel.add(bottomPanel, BorderLayout.SOUTH);
+        backgroundPanel.add(timeLabel);
+        backgroundPanel.add(sentencePanel);
+        backgroundPanel.add(bottomPanel);
         
     }
     
