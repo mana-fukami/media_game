@@ -18,7 +18,7 @@ class GmaeBackground extends JPanel {
     public GmaeBackground(String imagePath) {
         // 背景画像をロード
         backgroundImage = new ImageIcon(imagePath).getImage();
-        setLayout(new GridLayout(3,1));
+        setLayout(new GridLayout(5,1));
     }
 
     @Override
@@ -69,7 +69,7 @@ class GameView extends JFrame implements Observer{
         sentencePanel.add(romajiLabel);
         
         JPanel bottomPanel = new JPanel(new GridLayout(1, 4));
-        bottomPanel.setOpaque(false); // 背景を透過
+        //bottomPanel.setOpaque(false); // 背景を透過
         scoreLabel = new JLabel("スコア: "+model.getPoints(), SwingConstants.CENTER);
         corLabel = new JLabel("正解: "+model.getCorrect()+"個", SwingConstants.CENTER);
         missLabel = new JLabel("ミス: "+model.getMiss()+"個", SwingConstants.CENTER);
@@ -80,7 +80,11 @@ class GameView extends JFrame implements Observer{
         bottomPanel.add(endButton);
         
         backgroundPanel.add(timeLabel);
+        JPanel n1 = new JPanel(); n1.setOpaque(false);
+        backgroundPanel.add(n1); // レイアウトの調整のための空白
         backgroundPanel.add(sentencePanel);
+        JPanel n2 = new JPanel(); n2.setOpaque(false);
+        backgroundPanel.add(n2); // レイアウトの調整のための空白
         backgroundPanel.add(bottomPanel);
     }
     
