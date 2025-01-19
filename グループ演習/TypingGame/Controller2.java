@@ -1,5 +1,6 @@
 package TypingGame;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -69,12 +70,18 @@ class Controller2 implements KeyListener,ActionListener{
             model.Result(); // 結果画面へ切り替える 
             timer.stop();
         }
-        if(model.getTime()==0) {
+        if(model.getTime()<=0) {
         	model.Result();
         	timer.stop();
         }else {
         	model.setTime(-0.04);
-        	gameView.timeLabel.setText("00:"+String.format("%.2f", model.getTime()));
+        	gameView.timeLabel.setText(String.format("00:%05.2f", model.getTime()));
+            // 10秒以下ならラベルを赤色に
+            if (model.getTime() <= 10) {
+                gameView.timeLabel.setForeground(Color.RED);
+            } else {
+                gameView.timeLabel.setForeground(Color.BLACK); // それ以外は黒に戻す
+            }
         }
     }
 }

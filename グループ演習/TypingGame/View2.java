@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-class GmaeBackground extends JPanel {
+class GameBackground extends JPanel {
     private Image backgroundImage;
 
-    public GmaeBackground(String imagePath) {
+    public GameBackground(String imagePath) {
         // 背景画像をロード
         backgroundImage = new ImageIcon(imagePath).getImage();
         setLayout(new GridLayout(5,1));
@@ -46,16 +46,15 @@ class GameView extends JFrame implements Observer{
     	model.addObserver(this);
     	
     	// 背景画像付きのパネルを設定
-    	GmaeBackground backgroundPanel = new GmaeBackground("bb.png");
+    	GameBackground backgroundPanel = new GameBackground("bb.png");
         setContentPane(backgroundPanel);
         
         setTitle("ゲーム名"); 
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        
         JPanel topPanel = new JPanel();
-        timeLabel = new JLabel("00:"+String.format("%.2f", model.getTime()), SwingConstants.CENTER);
+        timeLabel = new JLabel(String.format("00:%05.2f", model.getTime()), SwingConstants.CENTER);
         topPanel.add(timeLabel);
         timeLabel.setFont(new Font("Impact",Font.PLAIN, 30));
 
