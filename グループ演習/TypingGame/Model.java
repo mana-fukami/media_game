@@ -146,7 +146,7 @@ class Model extends Observable{
 			}else {Miss();}
 		}else {
 			if(c==answer) {
-				charnum++;prevchar=answer;
+				Correct();
 			}else if(prevchar=='s'&&answer=='i') {//si,shi
 				if(c=='h') {
 					sentence=sentence.substring(0,charnum)+"h"+sentence.substring(charnum);
