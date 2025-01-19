@@ -82,7 +82,6 @@ class GameView extends JFrame implements Observer{
         backgroundPanel.add(timeLabel);
         backgroundPanel.add(sentencePanel);
         backgroundPanel.add(bottomPanel);
-        
     }
     
     public JButton getEndButton() { return endButton; }
