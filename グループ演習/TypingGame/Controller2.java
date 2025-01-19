@@ -12,7 +12,6 @@ class Controller2 implements KeyListener,ActionListener{
     private Model model;
     /* 制限時間に関する変数 */
 	private Timer timer;
-	private int limit;//経過した時間
     private boolean timerRunning = false; // タイマーの状態を追跡
 
     public Controller2(GameView gameView, Model model) {
