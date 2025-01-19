@@ -18,7 +18,6 @@ class BackgroundPanel extends JPanel {
     public BackgroundPanel(String imagePath) {
         // 背景画像をロード
         backgroundImage = new ImageIcon(imagePath).getImage();
-     // レイアウトをBorderLayoutに設定
         setLayout(new GridLayout(3,1));
     }
 
