@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-class BackgroundPanel extends JPanel {
+class GmaeBackground extends JPanel {
     private Image backgroundImage;
 
-    public BackgroundPanel(String imagePath) {
+    public GmaeBackground(String imagePath) {
         // 背景画像をロード
         backgroundImage = new ImageIcon(imagePath).getImage();
         setLayout(new GridLayout(3,1));
@@ -46,7 +46,7 @@ class GameView extends JFrame implements Observer{
     	model.addObserver(this);
     	
     	// 背景画像付きのパネルを設定
-        BackgroundPanel backgroundPanel = new BackgroundPanel("bb.png");
+    	GmaeBackground backgroundPanel = new GmaeBackground("bb.png");
         setContentPane(backgroundPanel);
         
         setTitle("ゲーム名"); 
