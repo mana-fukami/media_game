@@ -55,7 +55,7 @@ class GameView extends JFrame implements Observer{
         
         
         JPanel topPanel = new JPanel();
-        timeLabel = new JLabel(model.getTime()+"”00 秒", SwingConstants.CENTER);
+        timeLabel = new JLabel(String.format("%.2f", model.getTime()), SwingConstants.CENTER);
         topPanel.add(timeLabel);
         timeLabel.setFont(new Font("Impact",Font.PLAIN, 30));
 
@@ -71,9 +71,13 @@ class GameView extends JFrame implements Observer{
         JPanel bottomPanel = new JPanel(new GridLayout(1, 4));
         //bottomPanel.setOpaque(false); // 背景を透過
         scoreLabel = new JLabel("スコア: "+model.getPoints(), SwingConstants.CENTER);
+        scoreLabel.setFont(new Font("Impact",Font.PLAIN, 20));
         corLabel = new JLabel("正解: "+model.getCorrect()+"個", SwingConstants.CENTER);
+        corLabel.setFont(new Font("Impact",Font.PLAIN, 20));
         missLabel = new JLabel("ミス: "+model.getMiss()+"個", SwingConstants.CENTER);
+        missLabel.setFont(new Font("Impact",Font.PLAIN, 20));
         endButton = new JButton("ゲームを終了");
+        endButton.setFont(new Font("Impact",Font.PLAIN, 20));
         bottomPanel.add(scoreLabel);
         bottomPanel.add(corLabel);
         bottomPanel.add(missLabel);

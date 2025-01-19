@@ -23,7 +23,7 @@ class Controller2 implements KeyListener,ActionListener{
         this.gameView.addKeyListener(this);
         this.gameView.getEndButton().addActionListener(this);
         // タイマーの初期化（まだ開始しない）
-        timer = new Timer(1000, this);
+        timer = new Timer(40, this); // 40 ms間隔で更新
     }
 
     public void startTimer() {
@@ -40,7 +40,7 @@ class Controller2 implements KeyListener,ActionListener{
             timerRunning = false;
         }
         model.setTime(60 - model.getTime()); // 制限時間をリセット
-        gameView.timeLabel.setText("60”00 秒"); 
+        gameView.timeLabel.setText("60”00"); 
     }
 
     public void resetGame() {
@@ -73,9 +73,8 @@ class Controller2 implements KeyListener,ActionListener{
         	model.Result();
         	timer.stop();
         }else {
-        	model.setTime(-1);
-        	gameView.timeLabel.setText(model.getTime()+"”00 秒");
-        	//System.out.println(""+model.getTime());//debug
+        	model.setTime(-0.04);
+        	gameView.timeLabel.setText(String.format("%.2f", model.getTime()));
         }
     }
 }

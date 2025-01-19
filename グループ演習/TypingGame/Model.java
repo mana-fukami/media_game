@@ -16,7 +16,7 @@ class Model extends Observable{
 	private Sentences sentences; 
 	
 	/* 制限時間に関する変数 */
-	private int Time;//経過した時間
+	private double Time;//経過した時間
 	
 	/* 文字列の管理に関する変数 */
 	private String sentence;//ローマ字の文
@@ -47,7 +47,7 @@ class Model extends Observable{
         resetGame(); // ゲームの状態をリセット
 	}
 	public void resetGame() {
-        this.Time = 60; // 制限時間を初期化
+        this.Time = 60.00; // 制限時間を初期化
         this.miss = 0;
         this.correct = 0;
         this.points = 0;
@@ -211,10 +211,10 @@ class Model extends Observable{
 		notifyObservers();
 	}
 	/*タイマーの管理*/
-	public void setTime(int num) {
+	public void setTime(double num) {
 		Time+=num;
 	}
-	public int getTime() {
+	public double getTime() {
 		return Time;
 	}
 	/*ポイントの管理*/
