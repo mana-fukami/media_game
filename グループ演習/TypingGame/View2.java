@@ -55,7 +55,7 @@ class GameView extends JFrame implements Observer{
         
         
         JPanel topPanel = new JPanel();
-        timeLabel = new JLabel(String.format("%.2f", model.getTime()), SwingConstants.CENTER);
+        timeLabel = new JLabel("00:"+String.format("%.2f", model.getTime()), SwingConstants.CENTER);
         topPanel.add(timeLabel);
         timeLabel.setFont(new Font("Impact",Font.PLAIN, 30));
 

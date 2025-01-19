@@ -4,6 +4,7 @@
 クントの方法,kuntonohouhou
 共鳴振動数,kyoumeisindousuu
 剛体の運動,goutainoundou
+電気回路,denkikairo
 光電効果,koudenkouka
 プランク定数,purankuteisuu
 インピーダンス,inpi-dansu
@@ -17,7 +18,7 @@
 共役分子,kyouyakubunsi
 共役二重結合,kyouyakunizyuuketugou
 軌道エネルギー,kidouenerugi-
-電子遷移エネルギー,denshisennienerugi-
+電子遷移エネルギー,densisennienerugi-
 吸収極大,kyuusyuukyokudai
 滴定量,tekiteiryou
 原子間距離,gensikankyori
