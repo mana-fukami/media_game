@@ -54,6 +54,9 @@ class Model extends Observable{
         this.sentences = new Sentences(difficulty);
         makeSentence(); // 新しい問題を生成
     }
+	public int getDifficulty(){
+		return difficulty;
+	}
 	/*問題の作成*/
 	public void makeSentence() {
 		charnum=0;

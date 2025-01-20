@@ -18,7 +18,7 @@ class StayView extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // 背景パネル
-        BackgroundPanel backgroundPanel = new BackgroundPanel("view13_bg.png");
+        ResultBackgroundPanel backgroundPanel = new ResultBackgroundPanel("view13_bg.png");
         setContentPane(backgroundPanel);
         backgroundPanel.setLayout(null); // レイアウトマネージャを無効化
 
@@ -98,10 +98,10 @@ class StayView extends JFrame {
     }
 }
 
-class BackgroundPanel extends JPanel {
+class StayBackgroundPanel extends JPanel {
     private Image backgroundImage;
 
-    public BackgroundPanel(String imagePath) {
+    public StayBackgroundPanel(String imagePath) {
         // 画像を読み込む
         backgroundImage = new ImageIcon(imagePath).getImage();
         setLayout(null);

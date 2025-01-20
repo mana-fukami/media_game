@@ -19,12 +19,13 @@ class Controller3 implements ActionListener {
 
     public void showResults() {
         // モデルから結果情報を取得
+        int difficulty = model.getDifficulty();
         int score = model.getPoints();
         int correct = model.getCorrect();
         int miss = model.getMiss();
         
         // 結果ビューに反映
-        resultView.updateResults(score, correct, miss);
+        resultView.updateResults(difficulty, score, correct, miss);
         // resultView.setVisible(true);
         //
     }
