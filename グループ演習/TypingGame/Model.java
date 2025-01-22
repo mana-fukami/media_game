@@ -236,7 +236,7 @@ class Model extends Observable{
 	public void Correct() {
 		correct++;
 		Point(5);//正解したら10点追加
-		setTime(length/5);//正解したら制限時間プラス
+		setTime(1.0);//正解したら制限時間プラス
 		correctSound();
 		makeSentence();
 		deltaFlag = 1;
@@ -364,7 +364,7 @@ class Model extends Observable{
 	        bgm.open(convertedStream);
 	        FloatControl control = (FloatControl)bgm.getControl(FloatControl.Type.MASTER_GAIN);
 			controlByLinearScalar(control, 0.1); // 10%の音量で再生する
-	        bgm.start();
+	        bgm.loop(3);
 	    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 	        e.printStackTrace();
 	    }
