@@ -8,25 +8,27 @@ import java.util.Random;
 
 public class Sentences {
 	private int num;//呼び出す問題番号
+	private int prevnum;//一個前の問題番号
 	private int max;//最大問題数
 	private String sentence;
 	private String kanji;
 	private String filename;
+	private Random r = new Random(); // 乱数生成
 	
 	public Sentences(int difficulty) {//難易度の番号を引数にするといいか
 		filename=null;
 		num=1;
 		switch(difficulty) {
 		case 0:
-			max=27+1;
+			max=27;
 			filename="kiso.txt";
 			break;
 		case 1:
-			max=24+1;
+			max=24;
 			filename="senkei.txt";
 			break;
 		case 2:
-			max=27+1;
+			max=27;
 			filename="biseki.txt";
 			break;
 		default:
@@ -64,8 +66,8 @@ public class Sentences {
 						System.out.println("error");
 					}
 				}
-				Random r = new Random(); // 乱数生成
-				num = r.nextInt(max);
+				prevnum=num;
+				do{num = r.nextInt(max)+1;}while(num==prevnum);//連続で同じ問題が出ないように
 				bufferedreader.close();//ファイルを閉じる
 			}else {
 				System.out.println("ファイルが存在しません\n"+file);
