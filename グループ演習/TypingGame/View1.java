@@ -25,7 +25,7 @@ class StayView extends JFrame {
 
         // ゲームタイトル
         JLabel titleLabel = new JLabel(
-            "<html><div style='text-align: center; font-size: 64px; color: black; font-weight: bold;'>タイトル</div></html>",
+            "<html><div style='text-align: center; font-size: 64px; color: black; font-weight: bold;'>TAIPUEC</div></html>",
             SwingConstants.CENTER
         );
         titleLabel.setBounds(0, 80, 1000, 120);
