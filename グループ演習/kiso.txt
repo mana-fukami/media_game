@@ -24,4 +24,4 @@
 吸収極大,kyuusyuukyokudai
 滴定量,tekiteiryou
 原子間距離,gensikankyori
-写像,shazou
+写像,syazou

@@ -5,7 +5,7 @@
 正則,seisoku
 命題,meidai
 零行列,zerogyouretu
-簡約行列,kanyakugyouretu
+簡約行列,kannyakugyouretu
 一意性,itiisei
 行ベクトル,gyoubekutoru
 列ベクトル,retubekutoru
