@@ -40,6 +40,7 @@ class GameView extends JFrame implements Observer{
     protected JLabel corLabel;         // 正解数を表示
     protected JLabel missLabel;        // ミス数を表示
     protected JButton endButton;       // 終了ボタン
+    protected JLabel deltaTime;		// 追加時間
     
     public GameView(Model m) {
     	this.model=m;
@@ -53,19 +54,20 @@ class GameView extends JFrame implements Observer{
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
-        JPanel topPanel = new JPanel();
+        JPanel topPanel = new JPanel(new GridLayout(1,3));
         JPanel t1 = new JPanel();  // 空白
-        timeLabel = new JLabel(String.format("00:%05.2f", model.getTime()), SwingConstants.CENTER);
-        JPanel t2 = new JPanel(); // 制限時間のプラマイをここで可視化
+        timeLabel = new JLabel("",SwingConstants.CENTER);
+        deltaTime = new JLabel("",SwingConstants.LEFT);
+        timeLabel.setFont(new Font("Impact",Font.PLAIN, 35));
+        deltaTime.setFont(new Font("Impact",Font.PLAIN, 25));
         topPanel.add(t1);
         topPanel.add(timeLabel);
-        topPanel.add(t2);
-        timeLabel.setFont(new Font("Impact",Font.PLAIN, 35));
+        topPanel.add(deltaTime);
 
         JPanel sentencePanel = new JPanel(new GridLayout(2,1));
         sentencePanel.setOpaque(false); // 背景を透過
-        romajiLabel = new JLabel(""+model.getSentence(), SwingConstants.CENTER);
-        kanjiLabel = new JLabel(""+model.getKanji(), SwingConstants.CENTER);
+        romajiLabel = new JLabel("",SwingConstants.CENTER);
+        kanjiLabel = new JLabel("",SwingConstants.CENTER);
         romajiLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 40));
         kanjiLabel.setFont(new Font("Times New Roman", Font.BOLD, 50));
         sentencePanel.add(kanjiLabel);
@@ -85,7 +87,7 @@ class GameView extends JFrame implements Observer{
         bottomPanel.add(missLabel);
         bottomPanel.add(endButton);
         
-        backgroundPanel.add(timeLabel);
+        backgroundPanel.add(topPanel);
         JPanel n1 = new JPanel(); n1.setOpaque(false);
         backgroundPanel.add(n1); // レイアウトの調整のための空白
         backgroundPanel.add(sentencePanel);
@@ -97,12 +99,23 @@ class GameView extends JFrame implements Observer{
     public JButton getEndButton() { return endButton; }
 
     public void update(Observable o, Object arg) {
-    		// sentencePanel
-    	    romajiLabel.setText(model.getSentence());
-    	    kanjiLabel.setText(model.getKanji());
-    	    // bottomPanel
-    	    scoreLabel.setText("<html>スコア: <span style='color:rgb(70, 130, 180); font-size:20px;'>"+model.getPoints()+"</span> pts</html>");
-            corLabel.setText("<html>正解: <span style='font-size:20px;'>"+model.getCorrect()+"</span> 個</html>");
-            missLabel.setText("<html>ミスタイプ: <span style='font-size:20px;'>"+model.getMiss()+"</span> 回</html>");
+    	switch(model.getdelta()) {
+    	case 0:
+    		deltaTime.setText("");
+    		break;
+    	case 1:
+    		deltaTime.setText(String.format("<html><span style='color:rgb(70, 130, 180);'>+%.1f 秒</span></html>",model.getlength()/5.0));
+    		break;
+    	case 2:
+    		deltaTime.setText("<html><span style='color:rgb(200,50,50);'>-1.0 秒</span></html>");
+    		break;
+    	}
+    	// sentencePanel
+    	romajiLabel.setText(model.getSentence());
+    	kanjiLabel.setText(model.getKanji());
+    	// bottomPanel
+    	scoreLabel.setText("<html>スコア: <span style='color:rgb(70, 130, 180); font-size:20px;'>"+model.getPoints()+"</span> pts</html>");
+    	corLabel.setText("<html>正解: <span style='font-size:20px;'>"+model.getCorrect()+"</span> 個</html>");
+    	missLabel.setText("<html>ミスタイプ: <span style='font-size:20px;'>"+model.getMiss()+"</span> 回</html>");
     }
 }

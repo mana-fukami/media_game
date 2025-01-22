@@ -18,6 +18,7 @@ class Model extends Observable{
 	
 	/* 制限時間に関する変数 */
 	private double Time;//経過した時間
+	private int deltaFlag = 0;
 	
 	/* 文字列の管理に関する変数 */
 	private String sentence;//ローマ字の文
@@ -237,11 +238,19 @@ class Model extends Observable{
 		setTime(length/5);//正解したら制限時間プラス
 		correctSound();
 		makeSentence();
+		deltaFlag = 1;
 	}
 	public void Miss() {
 		miss++;
-		setTime(-0.5); // ミスタイプしたら-0.5 s
+		setTime(-1.0); // ミスタイプしたら-1.0 s
 		missSound();
+		deltaFlag = 2;
+	}
+	public int getdelta() {
+		return deltaFlag; // 制限時間の変化の可視化用
+	}
+	public int getlength() {
+		return length;
 	}
 	
 	/*効果音*/

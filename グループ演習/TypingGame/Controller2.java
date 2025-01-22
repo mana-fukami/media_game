@@ -61,7 +61,6 @@ class Controller2 implements KeyListener,ActionListener{
     @Override
     public void keyReleased(KeyEvent e) {}
 
-    // 終了ボタン
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == gameView.getEndButton()) {
