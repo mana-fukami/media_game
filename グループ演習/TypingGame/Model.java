@@ -145,6 +145,7 @@ class Model extends Observable{
 				if(c=='n') {
 					sentence=sentence.substring(0,charnum)+'n'+sentence.substring(charnum);
 					charnum++;length=sentence.length();
+					prevchar='\n';
 				}else{Miss();}
 			}else {Miss();}
 		}else {
