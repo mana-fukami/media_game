@@ -31,9 +31,13 @@ class Model extends Observable{
 	private int correct;
 	private int points;
 	
+	/*BGMに関する変数*/
+	private Clip bgm;
+	
 //-----待機画面での処理-----//
 	public void Stay() {
 		main.setFlag(0);
+		BGM();
 	}
 	public void setDifficulty(int num) {
 		difficulty=num;
@@ -44,6 +48,7 @@ class Model extends Observable{
 	public void Game() {
 		//System.out.println("Game()"); // debug
         main.setFlag(1);
+        BGM();
         resetGame(); // ゲームの状態をリセット
 	}
 	public void resetGame() {
@@ -308,5 +313,48 @@ class Model extends Observable{
 	/*画面切り替え*/
 	public void Result() {
 		main.setFlag(2);
+		BGM();
+	}
+
+//-----BGM-----
+	public void BGM() {
+		String filename=null;
+		if(bgm!=null) {
+			//今流れているのを停止させる。
+			bgm.stop();
+			bgm.close();
+		}
+		switch(main.getFlag()) {
+		case 0:
+			filename="ks003.wav";
+			break;
+		case 1:
+			filename="y018.wav";
+			break;
+		case 2:
+			filename="ks003.wav";
+			break;
+		}
+		File file=new File(filename);
+	    try {
+	        AudioInputStream originalStream = AudioSystem.getAudioInputStream(new File(file.getAbsolutePath()));
+	        AudioFormat originalFormat = originalStream.getFormat();
+	        //音声のフォーマットを合わせる。
+	        AudioFormat targetFormat = new AudioFormat(
+	            AudioFormat.Encoding.PCM_SIGNED,
+	            originalFormat.getSampleRate(),
+	            16, // 16-bit
+	            originalFormat.getChannels(),
+	            originalFormat.getChannels() * 2, // Frame size
+	            originalFormat.getSampleRate(),
+	            false // little-endian
+	        );
+	        AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, originalStream);
+	        bgm = (Clip)AudioSystem.getClip();
+	        bgm.open(convertedStream);
+	        bgm.loop(0);
+	    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+	        e.printStackTrace();
+	    }
 	}
 }

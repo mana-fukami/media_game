@@ -11,7 +11,7 @@
 プランク定数,purankuteisuu
 インピーダンス,inpi-dansu
 分子量,bunsiryou
-反応速度,hannousokudo
+反応速度,hannnousokudo
 比色,hisyoku
 合成アスピリン,gouseiasupirinn
 ピクノメーター,pikunome-ta-
