@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Random;
 
 public class Sentences {
 	private int num;//呼び出す問題番号
@@ -17,15 +18,15 @@ public class Sentences {
 		num=1;
 		switch(difficulty) {
 		case 0:
-			max=24;
+			max=27+1;
 			filename="kiso.txt";
 			break;
 		case 1:
-			max=22;
+			max=24+1;
 			filename="senkei.txt";
 			break;
 		case 2:
-			max=25;
+			max=27+1;
 			filename="biseki.txt";
 			break;
 		default:
@@ -63,10 +64,8 @@ public class Sentences {
 						System.out.println("error");
 					}
 				}
-				num++;
-				if(num>max) {
-					num=1;
-				}
+				Random r = new Random(); // 乱数生成
+				num = r.nextInt(max);
 				bufferedreader.close();//ファイルを閉じる
 			}else {
 				System.out.println("ファイルが存在しません\n"+file);

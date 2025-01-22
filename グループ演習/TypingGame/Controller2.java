@@ -27,7 +27,7 @@ class Controller2 implements KeyListener,ActionListener{
         timer = new Timer(40, this); // 40 ms間隔で更新
     }
 
-    public void startTimer() {
+    public void startTimer() {// mainから呼び出される
         if (!timerRunning) {
             model.setTime(60 - model.getTime()); // 制限時間をリセット
             timer.start();
@@ -41,7 +41,6 @@ class Controller2 implements KeyListener,ActionListener{
             timerRunning = false;
         }
         model.setTime(60 - model.getTime()); // 制限時間をリセット
-        gameView.timeLabel.setText("01:00.00"); 
     }
 
     public void resetGame() {
@@ -55,7 +54,6 @@ class Controller2 implements KeyListener,ActionListener{
     @Override
     public void keyTyped(KeyEvent e) {
         char typedChar = e.getKeyChar(); 
-        //System.out.println(typedChar);//debug
         model.Check(typedChar); // 文字が入力されたらCheckを呼び出す
     }
     @Override
@@ -70,10 +68,10 @@ class Controller2 implements KeyListener,ActionListener{
             model.Result(); // 結果画面へ切り替える 
             timer.stop();
         }
-        if(model.getTime()<=0) {
+        if(model.getTime()<=0) { // ゲームを終了
         	model.Result();
         	timer.stop();
-        }else {
+        }else { // ゲーム継続中
         	model.setTime(-0.04);
         	gameView.timeLabel.setText(String.format("00:%05.2f", model.getTime()));
             // 10秒以下ならラベルを赤色に
@@ -83,7 +81,7 @@ class Controller2 implements KeyListener,ActionListener{
             } else {
                 gameView.timeLabel.setForeground(Color.BLACK); // それ以外は黒に戻す
                 gameView.timeLabel.setFont(new Font("Impact",Font.PLAIN, 35));
-            }
+            }            
         }
     }
 }

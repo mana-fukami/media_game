@@ -54,8 +54,12 @@ class GameView extends JFrame implements Observer{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JPanel topPanel = new JPanel();
+        JPanel t1 = new JPanel();  // 空白
         timeLabel = new JLabel(String.format("00:%05.2f", model.getTime()), SwingConstants.CENTER);
+        JPanel t2 = new JPanel(); // 制限時間のプラマイをここで可視化
+        topPanel.add(t1);
         topPanel.add(timeLabel);
+        topPanel.add(t2);
         timeLabel.setFont(new Font("Impact",Font.PLAIN, 35));
 
         JPanel sentencePanel = new JPanel(new GridLayout(2,1));
@@ -89,8 +93,6 @@ class GameView extends JFrame implements Observer{
         backgroundPanel.add(n2); // レイアウトの調整のための空白
         backgroundPanel.add(bottomPanel);
     }
-    
-    // Color(70, 130, 180) 青色
     
     public JButton getEndButton() { return endButton; }
 

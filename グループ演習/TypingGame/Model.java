@@ -233,6 +233,7 @@ class Model extends Observable{
 	}
 	public void Miss() {
 		miss++;
+		setTime(-0.5); // ミスタイプしたら-0.5 s
 		missSound();
 	}
 	
