@@ -7,6 +7,7 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
@@ -262,7 +263,7 @@ class Model extends Observable{
 	        AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, originalStream);
 	        Clip clip = (Clip)AudioSystem.getClip();
 	        clip.open(convertedStream);
-	        clip.loop(0);
+	        clip.start();;
 	        clip.flush();
 	        while(clip.isActive()) {
 	            Thread.sleep(100);
@@ -289,7 +290,7 @@ class Model extends Observable{
 	        AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, originalStream);
 	        Clip clip = (Clip)AudioSystem.getClip();
 	        clip.open(convertedStream);
-	        clip.loop(0);
+	        clip.start();
 	        clip.flush();
 	        while(clip.isActive()) {
 	            Thread.sleep(100);
@@ -322,7 +323,6 @@ class Model extends Observable{
 		if(bgm!=null) {
 			//今流れているのを停止させる。
 			bgm.stop();
-			bgm.close();
 		}
 		switch(main.getFlag()) {
 		case 0:
@@ -352,9 +352,15 @@ class Model extends Observable{
 	        AudioInputStream convertedStream = AudioSystem.getAudioInputStream(targetFormat, originalStream);
 	        bgm = (Clip)AudioSystem.getClip();
 	        bgm.open(convertedStream);
-	        bgm.loop(0);
+	        FloatControl control = (FloatControl)bgm.getControl(FloatControl.Type.MASTER_GAIN);
+			controlByLinearScalar(control, 0.1); // 10%の音量で再生する
+	        bgm.start();
 	    } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 	        e.printStackTrace();
 	    }
+	}
+	/*音量調整のための計算*/
+	private void controlByLinearScalar(FloatControl control, double linearScalar) {
+		control.setValue((float)Math.log10(linearScalar) * 20);
 	}
 }
