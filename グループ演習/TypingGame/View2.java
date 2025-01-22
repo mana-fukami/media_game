@@ -56,7 +56,7 @@ class GameView extends JFrame implements Observer{
         JPanel topPanel = new JPanel();
         timeLabel = new JLabel(String.format("00:%05.2f", model.getTime()), SwingConstants.CENTER);
         topPanel.add(timeLabel);
-        timeLabel.setFont(new Font("Impact",Font.PLAIN, 30));
+        timeLabel.setFont(new Font("Impact",Font.PLAIN, 35));
 
         JPanel sentencePanel = new JPanel(new GridLayout(2,1));
         sentencePanel.setOpaque(false); // 背景を透過
@@ -68,14 +68,13 @@ class GameView extends JFrame implements Observer{
         sentencePanel.add(romajiLabel);
         
         JPanel bottomPanel = new JPanel(new GridLayout(1, 4));
-        //bottomPanel.setOpaque(false); // 背景を透過
-        scoreLabel = new JLabel("スコア: "+model.getPoints(), SwingConstants.CENTER);
-        scoreLabel.setFont(new Font("Impact",Font.PLAIN, 20));
-        corLabel = new JLabel("正解: "+model.getCorrect()+"個", SwingConstants.CENTER);
-        corLabel.setFont(new Font("Impact",Font.PLAIN, 20));
-        missLabel = new JLabel("ミス: "+model.getMiss()+"個", SwingConstants.CENTER);
-        missLabel.setFont(new Font("Impact",Font.PLAIN, 20));
+        scoreLabel = new JLabel("",SwingConstants.CENTER);
+        corLabel = new JLabel("",SwingConstants.CENTER);
+        missLabel = new JLabel("",SwingConstants.CENTER);
         endButton = new JButton("ゲームを終了");
+        scoreLabel.setFont(new Font("Impact",Font.PLAIN, 20));
+        corLabel.setFont(new Font("Impact",Font.PLAIN, 20));
+        missLabel.setFont(new Font("Impact",Font.PLAIN, 20));
         endButton.setFont(new Font("Impact",Font.PLAIN, 20));
         bottomPanel.add(scoreLabel);
         bottomPanel.add(corLabel);
@@ -91,13 +90,17 @@ class GameView extends JFrame implements Observer{
         backgroundPanel.add(bottomPanel);
     }
     
+    // Color(70, 130, 180) 青色
+    
     public JButton getEndButton() { return endButton; }
 
     public void update(Observable o, Object arg) {
+    		// sentencePanel
     	    romajiLabel.setText(model.getSentence());
     	    kanjiLabel.setText(model.getKanji());
-    	    scoreLabel.setText("スコア: "+model.getPoints());
-            corLabel.setText("正解: "+model.getCorrect());
-            missLabel.setText("ミス: "+model.getMiss());
+    	    // bottomPanel
+    	    scoreLabel.setText("<html>スコア: <span style='color:rgb(70, 130, 180); font-size:20px;'>"+model.getPoints()+"</span> pts</html>");
+            corLabel.setText("<html>正解: <span style='font-size:20px;'>"+model.getCorrect()+"</span> 個</html>");
+            missLabel.setText("<html>ミスタイプ: <span style='font-size:20px;'>"+model.getMiss()+"</span> 回</html>");
     }
 }
