@@ -236,7 +236,6 @@ class Model extends Observable{
 	public void Correct() {
 		correct++;
 		Point(5);//正解したら10点追加
-		setTime(1.0);//正解したら制限時間プラス
 		correctSound();
 		makeSentence();
 		deltaFlag = 1;
