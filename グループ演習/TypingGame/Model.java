@@ -59,6 +59,7 @@ class Model extends Observable{
         this.correct = 0;
         this.points = 0;
         this.sentences = new Sentences(difficulty);
+        this.deltaFlag = 0;
         makeSentence(); // 新しい問題を生成
     }
 	public int getDifficulty(){

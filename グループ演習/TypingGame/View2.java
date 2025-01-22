@@ -1,5 +1,6 @@
 package TypingGame;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 class GameBackground extends JPanel {
     private Image backgroundImage;
@@ -25,8 +27,21 @@ class GameBackground extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (backgroundImage != null) {
-            // 背景画像を描画
-            g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
+            int panelWidth = getWidth();
+            int panelHeight = getHeight();
+            int imgWidth = backgroundImage.getWidth(this);
+            int imgHeight = backgroundImage.getHeight(this);
+            double scaleX = (double) panelWidth / imgWidth;
+            double scaleY = (double) panelHeight / imgHeight;
+            double scale = Math.max(scaleX, scaleY);  // 縦横比を維持
+            // 新しい幅と高さを計算
+            int newWidth = (int) (imgWidth * scale);
+            int newHeight = (int) (imgHeight * scale);
+            // 画像を中央に配置するための座標を計算
+            int x = (panelWidth - newWidth) / 2;
+            int y = (panelHeight - newHeight) / 2;
+            // 画像を描画
+            g.drawImage(backgroundImage, x, y, newWidth, newHeight, this);
         }
     }
 }
@@ -59,10 +74,12 @@ class GameView extends JFrame implements Observer{
         timeLabel = new JLabel("",SwingConstants.CENTER);
         deltaTime = new JLabel("",SwingConstants.LEFT);
         timeLabel.setFont(new Font("Impact",Font.PLAIN, 35));
+        //timeLabel.setBorder(new LineBorder(new Color(70, 130, 180), 3));
         deltaTime.setFont(new Font("Impact",Font.PLAIN, 25));
         topPanel.add(t1);
         topPanel.add(timeLabel);
         topPanel.add(deltaTime);
+        //topPanel.setBorder(new LineBorder(new Color(70, 130, 180), 3));
 
         JPanel sentencePanel = new JPanel(new GridLayout(2,1));
         sentencePanel.setOpaque(false); // 背景を透過
@@ -74,6 +91,7 @@ class GameView extends JFrame implements Observer{
         sentencePanel.add(romajiLabel);
         
         JPanel bottomPanel = new JPanel(new GridLayout(1, 4));
+        //bottomPanel.setOpaque(false); // 背景を透過
         scoreLabel = new JLabel("",SwingConstants.CENTER);
         corLabel = new JLabel("",SwingConstants.CENTER);
         missLabel = new JLabel("",SwingConstants.CENTER);
@@ -82,10 +100,17 @@ class GameView extends JFrame implements Observer{
         corLabel.setFont(new Font("Impact",Font.PLAIN, 20));
         missLabel.setFont(new Font("Impact",Font.PLAIN, 20));
         endButton.setFont(new Font("Impact",Font.PLAIN, 20));
+        //endButton.setBackground(new Color(70, 130, 180));
         bottomPanel.add(scoreLabel);
         bottomPanel.add(corLabel);
         bottomPanel.add(missLabel);
         bottomPanel.add(endButton);
+        scoreLabel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
+        corLabel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
+        missLabel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
+        endButton.setBorder(new LineBorder(new Color(70, 130, 180), 2));
+        bottomPanel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
+        bottomPanel.setBackground(new Color(220, 220, 220));
         
         backgroundPanel.add(topPanel);
         JPanel n1 = new JPanel(); n1.setOpaque(false);
