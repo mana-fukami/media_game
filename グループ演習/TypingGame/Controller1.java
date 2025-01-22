@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 class Controller1 implements ActionListener {
     private StayView stayView;
     private Model model;
-    private Main main;
 
     public Controller1(StayView stayView, Model model) {
         this.stayView = stayView;

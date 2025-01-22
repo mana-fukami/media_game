@@ -10,7 +10,7 @@ public class Main {
     public static Controller2 gameController;
     public static Controller3 resultController;
 	
-	public static int flag=0;//0:待機,1:ゲーム,2:結果
+	public static int flag;//0:待機,1:ゲーム,2:結果
 	//-----setter-----
 	public void setFlag(int num) {
 		flag=num;
@@ -33,8 +33,10 @@ public class Main {
         stayController = new Controller1(stayview, model);
         gameController = new Controller2(gameview, model);
         resultController = new Controller3(resultview, model);
-
-		viewChange();
+        
+        //待機画面の表示
+        model.Stay();
+		//viewChange();
 	}
 
 	public static void viewChange() {
