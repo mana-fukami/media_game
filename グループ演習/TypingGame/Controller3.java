@@ -1,9 +1,7 @@
 package TypingGame;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.*;
 
 // 結果画面
 class Controller3 implements ActionListener {
@@ -22,12 +20,8 @@ class Controller3 implements ActionListener {
         int difficulty = model.getDifficulty();
         int score = model.getPoints();
         int correct = model.getCorrect();
-        int miss = model.getMiss();
-        
-        // 結果ビューに反映
-        resultView.updateResults(difficulty, score, correct, miss);
-        // resultView.setVisible(true);
-        //
+        int miss = model.getMiss(); 
+        resultView.updateResults(difficulty, score, correct, miss); // 結果ビューに反映
     }
 
     @Override

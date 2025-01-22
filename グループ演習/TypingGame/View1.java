@@ -5,12 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// 待機画面
 class StayView extends JFrame {
     private JButton startButton;
     private RoundedButton levelEasyButton;
     private RoundedButton levelMediumButton;
     private RoundedButton levelHardButton;
-    private RoundedButton selectedButton; // 現在選択中のボタンを追跡
+    private RoundedButton selectedButton;
 
     public StayView() {
         setTitle("待機画面");
@@ -22,38 +23,39 @@ class StayView extends JFrame {
         setContentPane(backgroundPanel);
         backgroundPanel.setLayout(null); // レイアウトマネージャを無効化
 
-        // ラベルを配置
+        // ゲームタイトル
+        JLabel titleLabel = new JLabel(
+            "<html><div style='text-align: center; font-size: 64px; color: black; font-weight: bold;'>タイトル</div></html>",
+            SwingConstants.CENTER
+        );
+        titleLabel.setBounds(0, 80, 1000, 120);
+        backgroundPanel.add(titleLabel);
+
+        // 案内ラベル
         JLabel levelLabel = new JLabel(
             "<html><div style='text-align: center; font-size: 16px; color: black; font-weight: bold;'>ステージを選択してください</div></html>",
             SwingConstants.CENTER
         );
-        levelLabel.setBounds(0, 225, 1000, 50); // 座標とサイズを設定
+        levelLabel.setBounds(0, 225, 1000, 50);
         backgroundPanel.add(levelLabel);
 
-        // JLabel startLabel = new JLabel(
-        //     "<html><div style='text-align: center; font-size: 16px; color: black; font-weight: bold;'>ゲームを開始するにはスペースキーを押してください</div></html>",
-        //     SwingConstants.CENTER
-        // );
-        // startLabel.setBounds(0, 225, 1000, 50); // 座標とサイズを設定
-        // backgroundPanel.add(startLabel);
-
-        // レベル選択ボタンを配置
+        // レベル選択ボタン
         levelEasyButton = createLevelButton("基礎科学実験");
-        levelEasyButton.setBounds(160, 300, 200, 60); // 座標とサイズを設定
+        levelEasyButton.setBounds(160, 300, 200, 60);
         backgroundPanel.add(levelEasyButton);
 
         levelMediumButton = createLevelButton("線形代数");
-        levelMediumButton.setBounds(400, 300, 200, 60); // 座標とサイズを設定
+        levelMediumButton.setBounds(400, 300, 200, 60);
         backgroundPanel.add(levelMediumButton);
 
         levelHardButton = createLevelButton("微積");
-        levelHardButton.setBounds(640, 300, 200, 60); // 座標とサイズを設定
+        levelHardButton.setBounds(640, 300, 200, 60);
         backgroundPanel.add(levelHardButton);
 
-        // ゲーム開始ボタンを配置
+        // ゲーム開始ボタン
         startButton = new JButton("ゲーム開始");
         startButton.setFont(new Font("Arial", Font.BOLD, 20));
-        startButton.setBounds(0, 510, 1000, 60); // 座標とサイズを設定
+        startButton.setBounds(0, 510, 1000, 60);
         backgroundPanel.add(startButton);
     }
 
@@ -70,7 +72,7 @@ class StayView extends JFrame {
                     selectedButton.setForeground(new Color(70, 130, 180));
                     selectedButton.repaint();
                 }
-                // 現在の選択ボタンを更新
+                    // 現在の選択ボタンを更新
                     selectedButton = button;
                     selectedButton.setSelected(true);
                     selectedButton.setBackground(new Color(70, 130, 180));
@@ -102,7 +104,6 @@ class StayBackgroundPanel extends JPanel {
     private Image backgroundImage;
 
     public StayBackgroundPanel(String imagePath) {
-        // 画像を読み込む
         backgroundImage = new ImageIcon(imagePath).getImage();
         setLayout(null);
     }
@@ -110,7 +111,6 @@ class StayBackgroundPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        // 背景画像を描画
         if (backgroundImage != null) {
             g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
         }
@@ -118,14 +118,12 @@ class StayBackgroundPanel extends JPanel {
 }
 
 class RoundedButton extends JButton {
-    private Color defaultBackgroundColor;
     private int arcWidth;
     private int arcHeight;
     private boolean isSelected; // 選択状態のフラグ
 
     public RoundedButton(String text, Color backgroundColor, int arcWidth, int arcHeight) {
         super(text);
-        this.defaultBackgroundColor = backgroundColor;
         this.arcWidth = arcWidth;
         this.arcHeight = arcHeight;
         this.isSelected = false;
@@ -157,8 +155,6 @@ class RoundedButton extends JButton {
     protected void paintBorder(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        // 選択状態に応じて枠線の太さを変更
         if (isSelected) {
             g2.setStroke(new BasicStroke(2));
             g2.setColor(Color.WHITE);
@@ -166,7 +162,6 @@ class RoundedButton extends JButton {
             g2.setStroke(new BasicStroke(1));
             g2.setColor(new Color(70, 130, 180));
         }
-
         g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, arcWidth, arcHeight);
         g2.dispose();
     }
