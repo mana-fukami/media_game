@@ -121,7 +121,7 @@ class GameView extends JFrame implements Observer{
     		deltaTime.setText("");
     		break;
     	case 1:
-    		deltaTime.setText("<html><span style='color:rgb(70, 130, 180); font-size:30px;'>◎</span></html>");
+    		deltaTime.setText("<html><span style='color:rgb(70, 130, 180);'>+"+5*model.getLength()/3+" pts</span></html>");
     		break;
     	case 2:
     		deltaTime.setText("<html><span style='color:rgb(200,50,50);'>-1.0 秒</span></html>");

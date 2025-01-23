@@ -249,6 +249,9 @@ class Model extends Observable{
 	public int getdelta() {
 		return deltaFlag; // 制限時間の変化の可視化用
 	}
+	public int getLength() {
+		return length;
+	}
 	
 	/*効果音*/
 	public void correctSound() {

@@ -28,7 +28,7 @@ public class Sentences {
 			filename="senkei.txt";
 			break;
 		case 2:
-			max=27;
+			max=37;
 			filename="biseki.txt";
 			break;
 		default:
