@@ -20,7 +20,7 @@ public class Sentences {
 		num=1;
 		switch(difficulty) {
 		case 0:
-			max=27;
+			max=39;
 			filename="kiso.txt";
 			break;
 		case 1:

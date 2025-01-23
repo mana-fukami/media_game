@@ -25,3 +25,15 @@
 滴定量,tekiteiryou
 原子間距離,gensikankyori
 写像,syazou
+光電管,koudenkann
+仕事関数,sigotokansuu
+謁見,ekkenn
+びっけん,bikkenn
+基礎の初歩,kisonosyoho
+講評,kouhyou
+D棟,dtou
+重力加速度,zyuuryokukasokudo
+阻止電圧,sosidennatu
+最小二乗法,saisyounizyouhou
+光のスペクトル,hikarinosupekutoru
+放射線,housyasenn

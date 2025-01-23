@@ -235,7 +235,7 @@ class Model extends Observable{
 	}
 	public void Correct() {
 		correct++;
-		Point(5);//正解したら10点追加
+		Point(5*length/3);// 長いワードほどポイント高い
 		correctSound();
 		makeSentence();
 		deltaFlag = 1;

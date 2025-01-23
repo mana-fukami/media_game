@@ -1,7 +1,7 @@
 微積,biseki
-コーシー・シュワルツの不等式,ko-si-syuwarutuno-hutousiki
+コーシー・シュワルツの不等式,ko-si-syuwarutunohutousiki
 ロピタルの定理,ropitarunoteiri
-有限テイラー展開,yuugente-ra-tenkai
+有限テイラー展開,yuugenteira-tenkai
 合成関数,gouseikansuu
 逆関数,gyakukansuu
 多変数関数,tahensuukansuu
@@ -22,6 +22,6 @@
 ガンマ関数,ganmakansuu
 ベータ関数,be-takansuu
 重積分,zyuusekibunn
-テイラーの定理,teira-noteir
+テイラーの定理,teira-noteiri
 マクローリン展開,makuro-rintenkai
 単位行列,tannigyouretu
