@@ -105,11 +105,11 @@ class GameView extends JFrame implements Observer{
         bottomPanel.add(corLabel);
         bottomPanel.add(missLabel);
         bottomPanel.add(endButton);
-        scoreLabel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
+        /*scoreLabel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
         corLabel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
         missLabel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
-        endButton.setBorder(new LineBorder(new Color(70, 130, 180), 2));
-        bottomPanel.setBorder(new LineBorder(new Color(70, 130, 180), 2));
+        endButton.setBorder(new LineBorder(new Color(70, 130, 180), 2));*/
+        bottomPanel.setBorder(new LineBorder(new Color(70, 130, 180), 4));
         bottomPanel.setBackground(new Color(220, 220, 220));
         
         backgroundPanel.add(topPanel);
@@ -129,7 +129,7 @@ class GameView extends JFrame implements Observer{
     		deltaTime.setText("");
     		break;
     	case 1:
-    		deltaTime.setText(String.format("<html><span style='color:rgb(70, 130, 180);'>+%.1f 秒</span></html>",model.getlength()/5.0));
+    		deltaTime.setText("<html><span style='color:rgb(70, 130, 180); font-size=40px;'>◎</span></html>");
     		break;
     	case 2:
     		deltaTime.setText("<html><span style='color:rgb(200,50,50);'>-1.0 秒</span></html>");
