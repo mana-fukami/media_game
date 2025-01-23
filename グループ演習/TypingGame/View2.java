@@ -65,7 +65,7 @@ class GameView extends JFrame implements Observer{
     	GameBackground backgroundPanel = new GameBackground("bb.png");
         setContentPane(backgroundPanel);
         
-        setTitle("ゲーム名"); 
+        setTitle("TAIPUEC"); 
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         

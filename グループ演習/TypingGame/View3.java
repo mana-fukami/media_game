@@ -1,7 +1,18 @@
 package TypingGame;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 // 結果画面
 class ResultView extends JFrame {
@@ -16,7 +27,7 @@ class ResultView extends JFrame {
     private JButton retryButton;
 
     public ResultView() {
-        setTitle("結果画面");
+        setTitle("TAIPUEC");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
