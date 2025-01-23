@@ -27,6 +27,7 @@ class Model extends Observable{
 	private int length;//入力する文字列の長さ
 	private char prevchar;//前に入力された文字
 	public int difficulty=1;//難易度
+	private int prevlength; // 一つ前の問題文のlength
 	
 	/*結果に関する変数*/
 	private int miss;
@@ -237,6 +238,7 @@ class Model extends Observable{
 		correct++;
 		Point(5*length/3);// 長いワードほどポイント高い
 		correctSound();
+		prevlength = length; // 前のワードのlengthを保存
 		makeSentence();
 		deltaFlag = 1;
 	}
@@ -249,8 +251,8 @@ class Model extends Observable{
 	public int getdelta() {
 		return deltaFlag; // 制限時間の変化の可視化用
 	}
-	public int getLength() {
-		return length;
+	public int getprevLength() {
+		return prevlength;
 	}
 	
 	/*効果音*/
