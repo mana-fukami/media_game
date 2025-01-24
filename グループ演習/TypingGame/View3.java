@@ -60,7 +60,7 @@ class ResultView extends JFrame {
         // スコアラベル
         scoreLabel = new JLabel("0", SwingConstants.CENTER);
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 64));
-        scoreLabel.setForeground(new Color(70, 130, 180));
+        scoreLabel.setForeground(new Color(20, 40, 139));
         scoreLabel.setBounds(300, 220, 400, 50);
         backgroundPanel.add(scoreLabel);
 
@@ -79,7 +79,7 @@ class ResultView extends JFrame {
         backgroundPanel.add(correctLabel);
 
         // ミス数タイトルラベル
-        missTitleLabel = new JLabel("ミス数", SwingConstants.CENTER);
+        missTitleLabel = new JLabel("ミスタイプ回数", SwingConstants.CENTER);
         missTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         missTitleLabel.setForeground(Color.BLACK);
         missTitleLabel.setBounds(500, 300, 250, 50);

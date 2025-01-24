@@ -1,4 +1,4 @@
-INDEX VERSION 1.134+C:\Users\mana\Desktop\大学\メディア演習\.metadata\.plugins\org.eclipse.jdt.core
+INDEX VERSION 1.134+/Users/yuefenglan/media_game/.metadata/.plugins/org.eclipse.jdt.core
+2614330686.index
 1865797976.index
-4016743848.index
-1422539411.index
+3954985146.index
