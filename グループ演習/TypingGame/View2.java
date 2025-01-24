@@ -101,7 +101,7 @@ class GameView extends JFrame implements Observer{
         bottomPanel.add(corLabel);
         bottomPanel.add(missLabel);
         bottomPanel.add(endButton);
-        bottomPanel.setBorder(new LineBorder(new Color(70, 130, 180), 4));
+        bottomPanel.setBorder(new LineBorder(new Color(20, 40, 139), 4));
         bottomPanel.setBackground(new Color(220, 220, 220));
         
         backgroundPanel.add(topPanel);
@@ -121,7 +121,7 @@ class GameView extends JFrame implements Observer{
     		deltaTime.setText("");
     		break;
     	case 1:
-    		deltaTime.setText("<html><span style='color:rgb(70, 130, 180);'>+"+5*model.getprevLength()/3+" pts</span></html>");
+    		deltaTime.setText("<html><span style='color:rgb(20, 40, 139);'>+"+5*model.getprevLength()/3+" pts</span></html>");
     		break;
     	case 2:
     		deltaTime.setText("<html><span style='color:rgb(200,50,50);'>-1.0 秒</span></html>");
@@ -131,7 +131,7 @@ class GameView extends JFrame implements Observer{
     	romajiLabel.setText(model.getSentence());
     	kanjiLabel.setText(model.getKanji());
     	// bottomPanel
-    	scoreLabel.setText("<html>スコア: <span style='color:rgb(70, 130, 180); font-size:20px;'>"+model.getPoints()+"</span> pts</html>");
+    	scoreLabel.setText("<html>スコア: <span style='color:rgb(20, 40, 139); font-size:20px;'>"+model.getPoints()+"</span> pts</html>");
     	corLabel.setText("<html>正解: <span style='font-size:20px;'>"+model.getCorrect()+"</span> 個</html>");
     	missLabel.setText("<html>ミスタイプ: <span style='font-size:20px;'>"+model.getMiss()+"</span> 回</html>");
     }
