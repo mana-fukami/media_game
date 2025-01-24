@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.io.File;
+
 
 // 待機画面
 class StayView extends JFrame {
@@ -37,12 +39,30 @@ class StayView extends JFrame {
         backgroundPanel.setLayout(null); // レイアウトマネージャを無効化
 
         // ゲームタイトル
-        JLabel titleLabel = new JLabel(
-            "<html><div style='text-align: center; font-size: 64px; color: black; font-weight: bold;'>TAIPUEC</div></html>",
-            SwingConstants.CENTER
-        );
-        titleLabel.setBounds(0, 80, 1000, 120);
-        backgroundPanel.add(titleLabel);
+        try {
+            // カスタムフォントの読み込み
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("play_pretend/Play Pretend.otf")).deriveFont(96f); // サイズを大きく
+        
+            // "TAIP" ラベル
+            JLabel titleLabelTAIP = new JLabel("TAIP          ", SwingConstants.CENTER);
+            titleLabelTAIP.setFont(customFont); // カスタムフォントを適用
+            titleLabelTAIP.setForeground(Color.BLACK); // 黒色
+            titleLabelTAIP.setBounds(0, 80, 1000, 120); // 位置とサイズを調整
+            backgroundPanel.add(titleLabelTAIP);
+        
+            // "UEC" ラベル
+            JLabel titleLabelUEC = new JLabel("         UEC", SwingConstants.CENTER);
+            titleLabelUEC.setFont(customFont); // 同じフォントを適用
+            titleLabelUEC.setForeground(new Color(70, 130, 180)); // 青色
+            titleLabelUEC.setBounds(0, 80, 1000, 120); // "UEC" の位置を調整
+            backgroundPanel.add(titleLabelUEC);
+        
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("フォントの読み込みに失敗しました");
+        }
+        
+        
 
         // 案内ラベル
         JLabel levelLabel = new JLabel(

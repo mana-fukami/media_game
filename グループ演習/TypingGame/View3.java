@@ -79,7 +79,7 @@ class ResultView extends JFrame {
         backgroundPanel.add(correctLabel);
 
         // ミス数タイトルラベル
-        missTitleLabel = new JLabel("ミス数", SwingConstants.CENTER);
+        missTitleLabel = new JLabel("ミスタイプ回数", SwingConstants.CENTER);
         missTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         missTitleLabel.setForeground(Color.BLACK);
         missTitleLabel.setBounds(500, 300, 250, 50);
