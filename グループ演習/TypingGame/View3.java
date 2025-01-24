@@ -60,7 +60,7 @@ class ResultView extends JFrame {
         // スコアラベル
         scoreLabel = new JLabel("0", SwingConstants.CENTER);
         scoreLabel.setFont(new Font("Arial", Font.BOLD, 64));
-        scoreLabel.setForeground(new Color(70, 130, 180));
+        scoreLabel.setForeground(new Color(20, 40, 139));
         scoreLabel.setBounds(300, 220, 400, 50);
         backgroundPanel.add(scoreLabel);
 

@@ -53,7 +53,7 @@ class StayView extends JFrame {
             // "UEC" ラベル
             JLabel titleLabelUEC = new JLabel("         UEC", SwingConstants.CENTER);
             titleLabelUEC.setFont(customFont); // 同じフォントを適用
-            titleLabelUEC.setForeground(new Color(70, 130, 180)); // 青色
+            titleLabelUEC.setForeground(new Color(20, 40, 139)); // 青色
             titleLabelUEC.setBounds(0, 80, 1000, 120); // "UEC" の位置を調整
             backgroundPanel.add(titleLabelUEC);
         
@@ -102,13 +102,13 @@ class StayView extends JFrame {
                     // 以前の選択ボタンの状態をリセット
                     selectedButton.setSelected(false);
                     selectedButton.setBackground(Color.WHITE);
-                    selectedButton.setForeground(new Color(70, 130, 180));
+                    selectedButton.setForeground(new Color(20, 40, 139));
                     selectedButton.repaint();
                 }
                     // 現在の選択ボタンを更新
                     selectedButton = button;
                     selectedButton.setSelected(true);
-                    selectedButton.setBackground(new Color(70, 130, 180));
+                    selectedButton.setBackground(new Color(20, 40, 139));
                     selectedButton.setForeground(Color.WHITE);
                     selectedButton.repaint();
             }
@@ -161,7 +161,7 @@ class RoundedButton extends JButton {
         this.arcHeight = arcHeight;
         this.isSelected = false;
         setBackground(backgroundColor);
-        setForeground(new Color(70, 130, 180));
+        setForeground(new Color(20, 40, 139));
         setContentAreaFilled(false);
         setFocusPainted(false);
     }
@@ -193,7 +193,7 @@ class RoundedButton extends JButton {
             g2.setColor(Color.WHITE);
         } else {
             g2.setStroke(new BasicStroke(1));
-            g2.setColor(new Color(70, 130, 180));
+            g2.setColor(new Color(20, 40, 139));
         }
         g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, arcWidth, arcHeight);
         g2.dispose();
