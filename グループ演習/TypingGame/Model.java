@@ -35,7 +35,7 @@ class Model extends Observable{
 	private int points;//総合得点
 	
 	/*BGMに関する変数*/
-	private Clip bgm;//BGMファイルの保持
+	private Clip bgm;//BGMファイルのプレーヤー
 	
 //-----待機画面での処理-----//
 	public void Stay() {
