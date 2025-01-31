@@ -19,6 +19,10 @@ public class Sentences {
 		filename=null;
 		num=1;
 		switch(difficulty) {
+		case -1:
+			max=3;
+			filename="test.txt";
+			break;
 		case 0:
 			max=39;
 			filename="kiso.txt";

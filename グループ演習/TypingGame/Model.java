@@ -30,12 +30,12 @@ class Model extends Observable{
 	private int prevlength; // 一つ前の問題文のlength
 	
 	/*結果に関する変数*/
-	private int miss;
-	private int correct;
-	private int points;
+	private int miss;//ミスタイプした数
+	private int correct;//正解数
+	private int points;//総合得点
 	
 	/*BGMに関する変数*/
-	private Clip bgm;
+	private Clip bgm;//BGMファイルの保持
 	
 //-----待機画面での処理-----//
 	public void Stay() {
